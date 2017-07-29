@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!--背景-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/night"
+        android:id="@+id/main_image"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <!--app name-->
+    <TextView
+        android:id="@+id/main_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_app_name"
+        android:textSize="@dimen/app_name_size"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/main_app_name_to_top"/>
+
+    <!--作者名称-->
+    <TextView
+        android:id="@+id/main_author_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_author_name"
+        android:textSize="@dimen/author_size"
+        android:textColor="@color/alpha_80_white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/main_author_to_top"
+        android:layout_below="@id/main_app_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/author_name_to_end"/>
+
+    <!--每日寄语-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/alpha_20_white"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/main_daily_message_padding"
+        android:layout_marginBottom="@dimen/main_daily_message_to_bottom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/daily_message_size"
+            android:gravity="center"
+            android:text="have a good day"
+            android:id="@+id/main_daily_message"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

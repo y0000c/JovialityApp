@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">YC愉阅</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+    <!--MainActivity-->
+    <string name="main_app_name">JovialityReader</string>
+    <string name="main_author_name">by YC</string>
+    <string-array name="main_daily_message">
+        <item>周日</item>
+        <item>好的开始是成功的一半，请好好加油，周一愉快</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>暂且抛开忙碌的工作，请尽情享受周六轻松生活</item>
+    </string-array>
+
+
+</resources>
