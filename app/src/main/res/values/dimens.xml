@@ -15,5 +15,6 @@
     <dimen name="author_size">18sp</dimen>
     <dimen name="daily_message_size">15sp</dimen>
 
-
+    <!--透明状态栏-->
+    <dimen name="fit_padding_top">0dp</dimen>
 </resources>

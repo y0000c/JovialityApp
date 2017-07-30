@@ -1,6 +1,7 @@
 package demo.yc.joviality.activity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,9 @@ public class MainActivity extends BaseAppActivity implements MainView
     @Override
     protected int getLayoutId()
     {
+        // 设置全屏要在setContentView之前，因此就在返回layout之前设置就好
+       getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
+               ,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         return R.layout.activity_main;
     }
 

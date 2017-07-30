@@ -1,8 +1,11 @@
 package demo.yc.lib.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import butterknife.ButterKnife;
 import demo.yc.lib.utils.ActivityUtils;
@@ -25,6 +28,9 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         LogUtil.d(TAG,"onCreate");
+
+        //状态栏
+        initWindow();
 
         // 将当前Activity添加到管理链表中
         ActivityUtils.newInstance().addActivity(this);
@@ -49,6 +55,19 @@ public abstract class BaseActivity extends AppCompatActivity
 
     }
 
+    /**
+     * 5.0及以上透明状态栏
+     */
+    private void initWindow(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    |View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+
+    }
 
     @Override
     public void finish()

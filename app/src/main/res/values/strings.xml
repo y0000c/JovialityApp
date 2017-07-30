@@ -15,8 +15,11 @@
         <item>周三</item>
         <item>周四</item>
         <item>周五</item>
-        <item>暂且抛开忙碌的工作，请尽情享受周六轻松生活</item>
+        <item>暂且抛开忙碌的工作，劳逸结合，请尽情享受周六轻松生活</item>
     </string-array>
 
+    <!--HomeActivity-->
+    <string name="open">drawer_open</string>
+    <string name="close">drawer_close</string>
 
 </resources>

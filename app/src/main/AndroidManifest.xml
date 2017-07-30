@@ -16,8 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="demo.yc.joviality.activity.base.BaseAppActivity">
-        </activity>
         <activity android:name="demo.yc.joviality.activity.HomeActivity">
         </activity>
     </application>

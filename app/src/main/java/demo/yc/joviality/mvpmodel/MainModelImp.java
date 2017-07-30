@@ -18,7 +18,7 @@ import demo.yc.lib.utils.LogUtil;
 public class MainModelImp
 {
     /**
-     * 获取MainActivity的背景图片们，根据一周七天来决定
+     * 获取MainActivity的背景图片，根据一周七天来决定
      * @return
      */
     public int getBackImageId()
@@ -50,7 +50,6 @@ public class MainModelImp
     {
         // 获取七天不同的寄语
         String[] allMessages = context.getResources().getStringArray(R.array.main_daily_message);
-
         LogUtil.d("day","获取所有寄语长度:"+allMessages.length);
         int day = CommonUtil.getDayOfWeek();
         if (day >= allMessages.length || day < 0)
