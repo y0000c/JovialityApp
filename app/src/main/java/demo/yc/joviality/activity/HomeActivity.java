@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import demo.yc.joviality.activity.base.BaseAppActivity;
 import demo.yc.joviality.mvppresenter.base.BasePresenter;
 import demo.yc.joviality.mvppresenter.imp.HomePresenterImp;
@@ -72,9 +74,9 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     protected void initEvents()
     {
         fm = getSupportFragmentManager();
+
         mHomePresenter = new HomePresenterImp(this, this);
         mHomePresenter.initialized();
-
     }
 
     /**
@@ -146,7 +148,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                                 .getItem(currentIndex).getTitle());
                     }
                 };
-       mDrawerToggle.setDrawerIndicatorEnabled(false);
+        mDrawerToggle.syncState();
         // 给drawerLayout 设置上面实现的监听器
         mHomeDrawerLayout.addDrawerListener(mDrawerToggle);
 
@@ -180,7 +182,37 @@ public class HomeActivity extends BaseAppActivity implements HomeView
             LogUtil.d("fragment",fragment.isAdded()+" "
                     +fragment.isVisible()+" "+fragment.isHidden());
         }
+
         ft.commit();
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.tool_menu_collection:
+                LogUtil.d("menu","show collection");
+                jumpToActivity(CollectionActivity.class,null,false);
+                break;
+            case R.id.tool_menu_download:
+                LogUtil.d("menu","show download");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected View getLoadingTargetView()
+    {
+        return ButterKnife.findById(this,R.id.home_frame_layout);
+    }
 }

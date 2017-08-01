@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--整个app主题颜色就是蓝色-->
+    <color name="blue_100">#57bfdc</color>
+    <color name="blue_120">#48a1ba</color>
+    <color name="blue_80">#71c8e1</color>
+    <color name="main_color">@color/blue_100</color>
+
+    <!--窗体颜色部分-->
+    <color name="colorPrimary">@color/blue_100</color>
+    <color name="colorPrimaryDark">@color/blue_120</color>
+    <color name="colorAccent">@color/blue_80</color>
+
+    <!--白色和透明度-->
+    <color name="alpha_20_white">#33FFFFFF</color>
+    <color name="alpha_40_white">#66FFFFFF</color>
+    <color name="alpha_60_white">#99FFFFFF</color>
+    <color name="alpha_80_white">#CCFFFFFF</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--黑色和透明度-->
+    <color name="black">#000</color>
+
+
+</resources>

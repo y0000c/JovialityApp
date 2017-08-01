@@ -1,6 +1,7 @@
 package demo.yc.joviality.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -53,6 +54,12 @@ public class MainActivity extends BaseAppActivity implements MainView
         mMainPresenter.initialized();
     }
 
+    @Override
+    protected View getLoadingTargetView()
+    {
+        return null;
+    }
+
     /**
      * 实现mainView，显示背景图片
      *
@@ -92,7 +99,7 @@ public class MainActivity extends BaseAppActivity implements MainView
     @Override
     public void startToHomeActivity()
     {
-        jumpToActivity(HomeActivity.class, true);
+        jumpToActivity(HomeActivity.class, null,true);
     }
 
 

@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.yc.joviality.fragment.partofimage.ImageMainFragment;
+import demo.yc.joviality.fragment.partofnews.NewsMainFragment;
+import demo.yc.joviality.fragment.partofvideo.VideoMainFragment;
 import demo.yc.jovialityyc.R;
 
 /**
@@ -24,9 +27,9 @@ public class HomeModelImp
     public List<Fragment> getPagerFragment()
     {
         List<Fragment> list = new ArrayList<>();
-        list.add(new Fragment());
-        list.add(new Fragment());
-        list.add(new Fragment());
+        list.add(new NewsMainFragment());
+        list.add(new ImageMainFragment());
+        list.add(new VideoMainFragment());
         return list;
     }
 

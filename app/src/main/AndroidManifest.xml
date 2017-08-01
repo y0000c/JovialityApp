@@ -18,6 +18,8 @@
         </activity>
         <activity android:name="demo.yc.joviality.activity.HomeActivity">
         </activity>
+        <activity android:name="demo.yc.joviality.activity.CollectionActivity">
+        </activity>
     </application>
 
 </manifest>

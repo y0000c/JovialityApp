@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/common_exception"
+        android:id="@+id/exception_image"/>
+    <TextView
+        android:id="@+id/exception_text"
+        android:layout_width="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="点击重试"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>
