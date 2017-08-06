@@ -1,13 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="demo.yc.joviality.fragment.partofimage.ImageMainFragment">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="demo.yc.joviality.fragment.partofimage.ImageMainFragment">
 
+    <demo.yc.lib.uis.YCPagerIndicator
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/main_color"
+        android:id="@+id/image_main_indicator"/>
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/image_main_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/image_main_pager"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-</FrameLayout>
+
+</LinearLayout>

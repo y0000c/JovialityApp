@@ -8,13 +8,16 @@ import android.view.View;
 
 import butterknife.BindView;
 import demo.yc.joviality.fragment.base.BaseAppFragment;
+import demo.yc.joviality.interfaces.IFragPagerSelectedListener;
+import demo.yc.joviality.mvpview.ImageFragListView;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.utils.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ImageListFragment extends BaseAppFragment
+public class ImageListFragment extends BaseAppFragment implements ImageFragListView
+        ,IFragPagerSelectedListener
 {
 
     @BindView(R.id.image_list_recycler_view)
@@ -22,6 +25,8 @@ public class ImageListFragment extends BaseAppFragment
 
     @BindView(R.id.image_list_refresh_layout)
     SwipeRefreshLayout mRefreshLayout;
+
+    
 
     @Override
     protected int getContentLayoutId()
@@ -65,4 +70,22 @@ public class ImageListFragment extends BaseAppFragment
         return mRefreshLayout;
     }
 
+
+    @Override
+    public void refreshListData()
+    {
+
+    }
+
+    @Override
+    public void addMoreListData()
+    {
+
+    }
+
+    @Override
+    public void onPagerSelected(String keyWord, int position)
+    {
+
+    }
 }

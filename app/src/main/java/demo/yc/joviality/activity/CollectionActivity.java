@@ -33,4 +33,5 @@ public class CollectionActivity extends BaseAppActivity
     {
         return null;
     }
+
 }

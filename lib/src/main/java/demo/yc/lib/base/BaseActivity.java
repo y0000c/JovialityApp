@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import demo.yc.lib.loading.ChangeViewController;
 import demo.yc.lib.utils.ActivityUtils;
 import demo.yc.lib.utils.LogUtil;
@@ -19,6 +20,11 @@ import demo.yc.lib.utils.LogUtil;
  */
 public abstract class BaseActivity extends AppCompatActivity
 {
+
+    /**
+     * ButterKnife 绑定
+     */
+    protected Unbinder unbinder;
     /**
      * 用来打印信息
      */
@@ -57,6 +63,7 @@ public abstract class BaseActivity extends AppCompatActivity
         else
             throw new IllegalArgumentException("invalid layout id");
 
+
         //初始化事件
         initEvents();
 
@@ -81,7 +88,7 @@ public abstract class BaseActivity extends AppCompatActivity
     public void setContentView(int layoutId)
     {
         super.setContentView(layoutId);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         if(null != getLoadingTargetView())
             controller = new ChangeViewController(getLoadingTargetView());
     }
@@ -117,6 +124,7 @@ public abstract class BaseActivity extends AppCompatActivity
     protected void onDestroy()
     {
         super.onDestroy();
+        unbinder.unbind();
         LogUtil.d(TAG,"onDestroy");
     }
 
@@ -215,5 +223,7 @@ public abstract class BaseActivity extends AppCompatActivity
         else
             controller.restore();
     }
+
+
 
 }

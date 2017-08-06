@@ -34,4 +34,10 @@ public class ImageMainFragAdapter extends FragmentPagerAdapter
             return list.size();
         return 0;
     }
+
+    @Override
+    public CharSequence getPageTitle(int position)
+    {
+        return list.get(position);
+    }
 }
