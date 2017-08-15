@@ -8,7 +8,7 @@ package demo.yc.joviality.mvppresenter.base;
 
 public interface ImageListPresenter
 {
-    void loadListData();
+    void loadListData(String requestTag, int eventCode, String keywords, int page, boolean isRefresh);
 
     void onItemClick();
 }

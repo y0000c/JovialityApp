@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import demo.yc.lib.loading.ChangeViewController;
 import demo.yc.lib.utils.CommonUtil;
 import demo.yc.lib.utils.LogUtil;
@@ -27,8 +26,8 @@ import demo.yc.lib.utils.LogUtil;
  */
 public abstract class BaseFragment extends Fragment
 {
-    protected Unbinder unbinder;
-    protected  static final String TAG = BaseFragment.class.getSimpleName();
+
+    protected  static  String TAG = null;
 
     /**
      * 上下文对象
@@ -63,10 +62,17 @@ public abstract class BaseFragment extends Fragment
    @Override
     public void onAttach(Context context)
     {
-        LogUtil.d("life",TAG+"_onAttach");
+        LogUtil.d("life","_onAttach");
         super.onAttach(context);
         mContext = context;
 
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        TAG = this.getClass().getSimpleName();
     }
 
     // fragment 创建布局时期的阶段
@@ -75,6 +81,7 @@ public abstract class BaseFragment extends Fragment
                              Bundle savedInstanceState)
     {
         LogUtil.d("life",TAG+"_onCreateView");
+
         if(getContentLayoutId() != 0)
             return inflater.inflate(getContentLayoutId(),null);
         else
@@ -87,7 +94,9 @@ public abstract class BaseFragment extends Fragment
     {
         LogUtil.d("life",TAG+"_onViewCreated");
         super.onViewCreated(view, savedInstanceState);
-        unbinder = ButterKnife.bind(this,view);
+
+        LogUtil.d("life",view == null ? "view is null":"not  null");
+        ButterKnife.bind(this,view);
 
         if(getLoadingTargetView() != null)
             controller = new ChangeViewController(getLoadingTargetView());
@@ -186,7 +195,6 @@ public abstract class BaseFragment extends Fragment
     {
         LogUtil.d("life",TAG+"_onDestroyView");
         super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override

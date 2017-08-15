@@ -52,7 +52,6 @@ public class ImageMainFragment extends BaseAppFragment implements FragMainView
     protected void onFirstUserVisible()
     {
         LogUtil.d("life", "first visible");
-
     }
 
     @Override
