@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
-import demo.yc.lib.loading.ChangeViewController;
+import butterknife.Unbinder;
 import demo.yc.lib.utils.CommonUtil;
 import demo.yc.lib.utils.LogUtil;
 
@@ -28,35 +28,17 @@ public abstract class BaseFragment extends Fragment
 {
 
     protected  static  String TAG = null;
-
     /**
      * 上下文对象
      */
     protected Context mContext;
-    /**
-     * 是否第一次显示
-     */
-    protected boolean isFisrtVisible = true;
-    /**
-     * 是否第一次消失
-     */
-    private boolean isFisrtInvisible = true;
-    /**
-     * 是否已经完全初始化
-     */
-    private boolean isPrepared = false;
 
-    /**
-     * 控制页面替换
-     */
-    private ChangeViewController controller;
+    private Unbinder unBind;
 
     public BaseFragment()
     {
         // Required empty public constructor
     }
-
-    // ******************划分生命周期**********************
 
     //（1）----------------初始化阶段-------------
    @Override
@@ -65,15 +47,22 @@ public abstract class BaseFragment extends Fragment
         LogUtil.d("life","_onAttach");
         super.onAttach(context);
         mContext = context;
-
     }
 
+    //
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         TAG = this.getClass().getSimpleName();
+        initData();
     }
+
+    /**
+     * 用来处理getArgument（）传入的参数
+     */
+    protected abstract void initData();
+
 
     // fragment 创建布局时期的阶段
     @Override
@@ -81,27 +70,10 @@ public abstract class BaseFragment extends Fragment
                              Bundle savedInstanceState)
     {
         LogUtil.d("life",TAG+"_onCreateView");
-
         if(getContentLayoutId() != 0)
             return inflater.inflate(getContentLayoutId(),null);
         else
             return super.onCreateView(inflater,container,savedInstanceState);
-    }
-
-    // fragment 布局创建成功时生命周期
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
-    {
-        LogUtil.d("life",TAG+"_onViewCreated");
-        super.onViewCreated(view, savedInstanceState);
-
-        LogUtil.d("life",view == null ? "view is null":"not  null");
-        ButterKnife.bind(this,view);
-
-        if(getLoadingTargetView() != null)
-            controller = new ChangeViewController(getLoadingTargetView());
-
-        initEvents();
     }
 
     /**
@@ -109,100 +81,47 @@ public abstract class BaseFragment extends Fragment
      */
     protected abstract int getContentLayoutId();
 
+
+    // fragment 布局创建成功时生命周期
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        unBind = ButterKnife.bind(this,view);
+        initEvents();
+    }
+
     /**
      * 初始化控件和事件
      */
     protected abstract void initEvents();
 
-    // (2)-----------可见阶段------------------
-
-    //frg创建成功时期
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState)
-    {
-        LogUtil.d("life",TAG+"_onActivityCreated");
-        super.onActivityCreated(savedInstanceState);
-        initPrepare();
-    }
-
-    /**
-     * 判断有没有初始化，如果已经初始化了，那就直接显示界面
-     * 否则，就更改为已经初始化了，
-     * 因为最开始调用该方法的是onActivityCreated,表示已经初始化完了
-     * 一次加载多个frag,需要进行同步操作
-     */
-    private synchronized void initPrepare()
-    {
-        LogUtil.d("life",TAG+"_initPrepare");
-        if(isPrepared)
-            onFirstUserVisible();
-        else
-            isPrepared = true;
-    }
-
-    // 用来设置当前的view是否可见，可以用来判断frag的当前状态
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser)
-    {
-        LogUtil.d("life",TAG+"_setUserVisibleHint"+isVisibleToUser);
-        super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser)
-        {
-            if(isFisrtVisible)
-            {
-                isFisrtVisible = false;
-                initPrepare();
-            }else
-                onUserVisible();
-        }else
-        {
-            if(isFisrtInvisible)
-            {
-                isFisrtInvisible = false;
-                onFirstUserVisible();
-            }else
-                onUserInVisible();
-        }
-    }
-
-    /**
-     * 第一次显示界面，方便进行一些数据初始化化操作
-     */
-    protected abstract void onFirstUserVisible();
-
-    /**
-     * 非第一次显示界面，相当于activity的onresume阶段
-     */
-    protected abstract void onUserVisible();
-
-
-
-    // (3)-----------不可见阶段----------------
-    /**
-     * 第一次界面不可见（一般是不做什么任何处理的）
-     */
-    protected abstract void onFirstUserInvisible();
-
-    /**
-     * 非第一次界面不可见，相当于是onPause阶段
-     */
-    protected abstract void onUserInVisible();
-
-    // (4)-----------销毁阶段-------------------
-
-    @Override
-    public void onDestroyView()
-    {
-        LogUtil.d("life",TAG+"_onDestroyView");
-        super.onDestroyView();
-    }
 
     @Override
     public void onDestroy()
     {
         LogUtil.d("life",TAG+"_onDestroy");
+        unBind.unbind();
         super.onDestroy();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //********************定义公用方法***********************
 
@@ -246,57 +165,57 @@ public abstract class BaseFragment extends Fragment
     }
 
 
-    // *********************高级用法，封装基本页面******************
-
-    protected abstract View getLoadingTargetView();
-
-    /**
-     * 显示加载过程的页面
-     * @param toggle
-     * @param msg
-     */
-    protected void toggleShowLoading(boolean toggle,String msg)
-    {
-        if(getLoadingTargetView() == null)
-            throw new IllegalArgumentException("there is not target View");
-        if(toggle)
-            controller.showLoading(msg);
-        else
-            controller.restore();
-    }
-
-    /**
-     * 某些异常情况下显示的页面
-     * @param toggle
-     * @param msg
-     * @param listener
-     */
-    protected void toggleShowException(
-            boolean toggle, String msg,View.OnClickListener listener)
-    {
-        if(getLoadingTargetView() == null)
-            throw new IllegalArgumentException("there is not target View");
-        if(toggle)
-            controller.showException(msg,listener);
-        else
-            controller.restore();
-    }
-
-    /**
-     * 网络异常的时候显示页面
-     * @param toggle
-     * @param listener
-     */
-    protected void toggleShowNetError(
-            boolean toggle,View.OnClickListener listener)
-    {
-        if(getLoadingTargetView() == null)
-            throw new IllegalArgumentException("there is not target View");
-        if(toggle)
-            controller.showNetError(listener);
-        else
-            controller.restore();
-    }
+//    // *********************高级用法，封装基本页面******************
+//
+//    protected abstract View getLoadingTargetView();
+//
+//    /**
+//     * 显示加载过程的页面
+//     * @param toggle
+//     * @param msg
+//     */
+//    protected void toggleShowLoading(boolean toggle,String msg)
+//    {
+//        if(getLoadingTargetView() == null)
+//            throw new IllegalArgumentException("there is not target View");
+//        if(toggle)
+//            controller.showLoading(msg);
+//        else
+//            controller.restore();
+//    }
+//
+//    /**
+//     * 某些异常情况下显示的页面
+//     * @param toggle
+//     * @param msg
+//     * @param listener
+//     */
+//    protected void toggleShowException(
+//            boolean toggle, String msg,View.OnClickListener listener)
+//    {
+//        if(getLoadingTargetView() == null)
+//            throw new IllegalArgumentException("there is not target View");
+//        if(toggle)
+//            controller.showException(msg,listener);
+//        else
+//            controller.restore();
+//    }
+//
+//    /**
+//     * 网络异常的时候显示页面
+//     * @param toggle
+//     * @param listener
+//     */
+//    protected void toggleShowNetError(
+//            boolean toggle,View.OnClickListener listener)
+//    {
+//        if(getLoadingTargetView() == null)
+//            throw new IllegalArgumentException("there is not target View");
+//        if(toggle)
+//            controller.showNetError(listener);
+//        else
+//            controller.restore();
+//    }
 
 
 }

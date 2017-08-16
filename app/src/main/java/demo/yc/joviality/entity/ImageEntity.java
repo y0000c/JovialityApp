@@ -12,11 +12,16 @@ public class ImageEntity
     private String small;
     private String large;
 
+    private int width;
+    private int height;
+
     public ImageEntity(){}
 
-    public ImageEntity(String small)
+    public ImageEntity(String small,int width,int height)
     {
         this.small = small;
+        this.width = width;
+        this.height = height;
     }
 
     public String getSmall()
@@ -37,5 +42,25 @@ public class ImageEntity
     public void setLarge(String large)
     {
         this.large = large;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public void setWidth(int width)
+    {
+        this.width = width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public void setHeight(int height)
+    {
+        this.height = height;
     }
 }

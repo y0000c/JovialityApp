@@ -28,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity
     /**
      * 用来打印信息
      */
-    protected static final String TAG = BaseActivity.class.getSimpleName();
+    protected static String TAG ;
 
     /**
      * 控制页面替换
@@ -41,6 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
+
+        TAG = this.getClass().getSimpleName();
         LogUtil.d(TAG,"onCreate");
 
         //状态栏
@@ -56,17 +58,12 @@ public abstract class BaseActivity extends AppCompatActivity
 
         // 显示当前Activity的布局
         if(getLayoutId() != 0)
-        {
             setContentView(getLayoutId());
-
-        }
         else
             throw new IllegalArgumentException("invalid layout id");
 
-
         //初始化事件
         initEvents();
-
 
     }
 
@@ -89,8 +86,6 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.setContentView(layoutId);
         unbinder = ButterKnife.bind(this);
-        if(null != getLoadingTargetView())
-            controller = new ChangeViewController(getLoadingTargetView());
     }
 
 
@@ -110,6 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity
      * 初始化一些相关操作事件events
      */
     protected abstract void initEvents();
+
 
 
     @Override
@@ -170,60 +166,5 @@ public abstract class BaseActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-    // **************定义公用页面显示方法**********************
-
-    protected abstract View getLoadingTargetView();
-
-    /**
-     * 显示加载过程的页面
-     * @param toggle
-     * @param msg
-     */
-    protected void toggleShowLoading(boolean toggle,String msg)
-    {
-        if(getLoadingTargetView() == null)
-            throw new IllegalArgumentException("there is not target View");
-        if(toggle)
-            controller.showLoading(msg);
-        else
-            controller.restore();
-    }
-
-    /**
-     * 某些异常情况下显示的页面
-     * @param toggle
-     * @param msg
-     * @param listener
-     */
-    protected void toggleShowException(
-            boolean toggle, String msg,View.OnClickListener listener)
-    {
-        if(getLoadingTargetView() == null)
-            throw new IllegalArgumentException("there is not target View");
-        if(toggle)
-            controller.showException(msg,listener);
-        else
-            controller.restore();
-    }
-
-    /**
-     * 网络异常的时候显示页面
-     * @param toggle
-     * @param listener
-     */
-    protected void toggleShowNetError(
-            boolean toggle,View.OnClickListener listener)
-    {
-        if(getLoadingTargetView() == null)
-            throw new IllegalArgumentException("there is not target View");
-        if(toggle)
-            controller.showNetError(listener);
-        else
-            controller.restore();
-    }
-
-
 
 }
