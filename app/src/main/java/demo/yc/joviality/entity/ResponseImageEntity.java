@@ -1,5 +1,6 @@
 package demo.yc.joviality.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class ResponseImageEntity
         this.imgs = imgs;
     }
 
-    public static class ImgsBean
+    public static class ImgsBean implements Serializable
     {
         /**
          * downloadUrl : http://c.hiphotos.baidu.com/image/pic/item/1e30e924b899a9014edb777e1f950a7b0308f58f.jpg

@@ -3,14 +3,15 @@
           package="demo.yc.jovialityyc">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:name="demo.yc.joviality.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="demo.yc.joviality.MyApp">
+        android:theme="@style/AppTheme">
         <activity android:name="demo.yc.joviality.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,6 +22,10 @@
         <activity android:name="demo.yc.joviality.ui.activity.HomeActivity">
         </activity>
         <activity android:name="demo.yc.joviality.ui.activity.CollectionActivity">
+        </activity>
+        <activity android:name="demo.yc.joviality.ui.activity.ImageDetailActivity">
+        </activity>
+        <activity android:name="demo.yc.joviality.ui.activity.base.BaseDetailActivity">
         </activity>
     </application>
 

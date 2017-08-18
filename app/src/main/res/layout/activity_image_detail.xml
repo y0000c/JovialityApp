@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:background="#dd545454"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="demo.yc.joviality.ui.activity.ImageDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/image_detail_prepare_layout"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:id="@+id/image_detail_prepare_small"
+                android:layout_centerInParent="true"
+                android:layout_width="150dp"
+                android:layout_height="150dp"/>
+            <ImageView
+                android:id="@+id/image_detail_prepare_gif"
+                android:layout_centerInParent="true"
+                android:layout_width="80dp"
+                android:layout_height="80dp"/>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/image_detail_item"/>
+
+
+
+    </RelativeLayout>
+
+
+    <include
+        layout="@layout/common_tool_bar"/>
+
+</FrameLayout>

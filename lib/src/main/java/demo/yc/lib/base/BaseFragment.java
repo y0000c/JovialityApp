@@ -2,7 +2,6 @@ package demo.yc.lib.base;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -31,7 +30,7 @@ public abstract class BaseFragment extends Fragment
     /**
      * 上下文对象
      */
-    protected Context mContext;
+    protected BaseActivity mContext;
 
     private Unbinder unBind;
 
@@ -46,7 +45,7 @@ public abstract class BaseFragment extends Fragment
     {
         LogUtil.d("life","_onAttach");
         super.onAttach(context);
-        mContext = context;
+        mContext = (BaseActivity) context;
     }
 
     //
@@ -124,33 +123,33 @@ public abstract class BaseFragment extends Fragment
 
 
     //********************定义公用方法***********************
-
-    /**
-     * 跳转到指定Activity
-     * @param clazz     目标Activity
-     * @param extras       额外信息
-     */
-    protected void jumpToActivity(Class<?> clazz,Bundle extras)
-    {
-        Intent intent = new Intent(getActivity(),clazz);
-        if(extras != null)
-            intent.putExtras(extras);
-        startActivity(intent);
-    }
-
-    /**
-     * 跳转到指定Activity，带返回值
-     * @param clazz     目标activity
-     * @param extras    额外信息
-     * @param requestCode   请求码
-     */
-    protected void jumpToActivityForResult(Class<?> clazz,Bundle extras,int requestCode)
-    {
-        Intent intent = new Intent(getActivity(),clazz);
-        if(extras != null)
-            intent.putExtras(extras);
-        startActivityForResult(intent,requestCode);
-    }
+//
+//    /**
+//     * 跳转到指定Activity
+//     * @param clazz     目标Activity
+//     * @param extras       额外信息
+//     */
+//    protected void jumpToActivity(Class<?> clazz,Bundle extras)
+//    {
+//        Intent intent = new Intent(mContext,clazz);
+//        if(extras != null)
+//            intent.putExtras(extras);
+//        startActivity(intent);
+//    }
+//
+//    /**
+//     * 跳转到指定Activity，带返回值
+//     * @param clazz     目标activity
+//     * @param extras    额外信息
+//     * @param requestCode   请求码
+//     */
+//    protected void jumpToActivityForResult(Class<?> clazz,Bundle extras,int requestCode)
+//    {
+//        Intent intent = new Intent(getActivity(),clazz);
+//        if(extras != null)
+//            intent.putExtras(extras);
+//        startActivityForResult(intent,requestCode);
+//    }
 
     /**
      * 显示toast提示信息
@@ -159,7 +158,7 @@ public abstract class BaseFragment extends Fragment
     protected void showToast(String msg)
     {
         if(!CommonUtil.isEmpty(msg))
-            Snackbar.make(getActivity().getWindow().getDecorView(),
+            Snackbar.make(mContext.getWindow().getDecorView(),
                     msg,
                     Toast.LENGTH_SHORT).show();
     }

@@ -4,7 +4,6 @@ package demo.yc.joviality.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,6 +14,7 @@ import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.joviality.entity.ResponseImageEntity;
 import demo.yc.joviality.mvp.mvppresenter.imp.FragListPresenterImp;
 import demo.yc.joviality.mvp.mvpview.FragListView;
+import demo.yc.joviality.ui.activity.ImageDetailActivity;
 import demo.yc.joviality.ui.adapter.ImageListAdapter;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
@@ -50,7 +50,10 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<R
             @Override
             public void onItemClick(ViewHolder holder, ResponseImageEntity.ImgsBean data, int position)
             {
-                Log.w("click","click---->"+position);
+                //Log.w("click","click---->"+position);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(ImageDetailActivity.IMAGE_TAG,data);
+                mContext.jumpToActivity(ImageDetailActivity.class,bundle,false);
             }
         });
         mAdapter.setOnLoadMoreListener(new IRecyclerLoadMoreListener()

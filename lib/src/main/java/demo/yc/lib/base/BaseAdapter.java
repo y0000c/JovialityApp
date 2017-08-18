@@ -298,15 +298,22 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         if(mFooterLayout != null)
         {
             mFooterLayout.removeAllViews();
-            lp = (RelativeLayout.LayoutParams) mFooterLayout.getLayoutParams();
+
+            // 这边可能会遇到一个bug,当图片没有完全加载完，
+            // 网络关了，此时滑到最底部
+            // 会发现添加的footerlayout的lp类型是StaggeredGridLayoutManager的
+            // 导致转换错误
+            if(mFooterLayout.getLayoutParams() instanceof RelativeLayout.LayoutParams)
+                lp = (RelativeLayout.LayoutParams) mFooterLayout.getLayoutParams();
         }
         else
-        {
             mFooterLayout = new RelativeLayout(mContext);
+
+        if(lp == null)
             lp = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.MATCH_PARENT
                     ,RelativeLayout.LayoutParams.WRAP_CONTENT);
-        }
+
         mFooterLayout.addView(footerView,lp);
     }
 

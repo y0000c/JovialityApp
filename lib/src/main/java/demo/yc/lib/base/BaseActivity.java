@@ -112,7 +112,6 @@ public abstract class BaseActivity extends AppCompatActivity
     protected abstract void initEvents();
 
 
-
     @Override
     public void finish()
     {
@@ -137,7 +136,7 @@ public abstract class BaseActivity extends AppCompatActivity
      * @param extras       额外信息
      * @param isKill      是否结束当前activity
      */
-    protected void jumpToActivity(Class<?> clazz,Bundle extras,boolean isKill)
+    public void jumpToActivity(Class<?> clazz,Bundle extras,boolean isKill)
     {
         Intent intent = new Intent(this,clazz);
         if(extras != null)

@@ -222,6 +222,9 @@ public class HomeActivity extends BaseAppActivity implements HomeView
             case R.id.tool_menu_download:
                 LogUtil.d("menu","show download");
                 break;
+            case R.id.tool_menu_search:
+                LogUtil.d("menu","show search");
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
