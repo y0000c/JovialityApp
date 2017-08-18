@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import demo.yc.lib.utils.ResUtils;
 
@@ -61,6 +62,12 @@ public class ViewHolder extends RecyclerView.ViewHolder
         return (T)view;
     }
 
+    public ViewHolder setText(int resId,String msg)
+    {
+        TextView textView = getItemView(resId);
+        textView.setText(msg);
+        return this;
+    }
     /**
      * 获取当前的布局View
      * @return

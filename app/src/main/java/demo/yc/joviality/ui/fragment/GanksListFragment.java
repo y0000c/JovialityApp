@@ -3,7 +3,7 @@ package demo.yc.joviality.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -11,11 +11,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import demo.yc.joviality.entity.ImageEntity;
-import demo.yc.joviality.entity.ResponseImageEntity;
+import demo.yc.joviality.entity.ResponseGankEntity;
 import demo.yc.joviality.mvp.mvppresenter.imp.FragListPresenterImp;
 import demo.yc.joviality.mvp.mvpview.FragListView;
-import demo.yc.joviality.ui.adapter.ImageListAdapter;
+import demo.yc.joviality.ui.adapter.GankListAdapter;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.ViewHolder;
@@ -26,12 +25,13 @@ import demo.yc.lib.utils.LogUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ImageListFragment extends SubTypeFragment implements FragListView<ResponseImageEntity.ImgsBean>
+public class GanksListFragment extends SubTypeFragment implements FragListView<ResponseGankEntity>
 {
-    public static ImageListFragment newInstance(String type)
+
+    public static GanksListFragment newInstance(String type)
     {
         LogUtil.d("fragment",TAG+"--"+type);
-        ImageListFragment fragment = new ImageListFragment();
+        GanksListFragment fragment = new GanksListFragment();
         Bundle args = new Bundle();
         args.putString(SUB_TYPE,type);
         fragment.setArguments(args);
@@ -42,13 +42,13 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<R
     protected void initEvents()
     {
         super.initEvents();
-      //  mainType = ResUtils.resToStr(mContext, R.string.image);
-        mAdapter = new ImageListAdapter(getContext(),new ArrayList<ResponseImageEntity.ImgsBean>(),true);
+       // mainType = ResUtils.resToStr(mContext,R.string.gank);
+        mAdapter = new GankListAdapter(getContext(),new ArrayList<ResponseGankEntity.ResultsBean>(),true);
         mAdapter.showLoadingView();
-        mAdapter.setOnCLickListener(new IRecyclerItemClickListener<ResponseImageEntity.ImgsBean>()
+        mAdapter.setOnCLickListener(new IRecyclerItemClickListener<ResponseGankEntity.ResultsBean>()
         {
             @Override
-            public void onItemClick(ViewHolder holder, ResponseImageEntity.ImgsBean data, int position)
+            public void onItemClick(ViewHolder holder, ResponseGankEntity.ResultsBean data, int position)
             {
                 Log.w("click","click---->"+position);
             }
@@ -69,18 +69,18 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<R
             }
         });
 
-        StaggeredGridLayoutManager manager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        LinearLayoutManager manager =
+                new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        mPresenter = new FragListPresenterImp<ImageEntity>(getContext(),this);
+
+        mPresenter = new FragListPresenterImp<ResponseGankEntity>(getContext(),this);
     }
 
     @Override
     protected void getData()
     {
-        mPresenter.loadListData(R.string.image,mSubType,currentPager);
+        mPresenter.loadListData(R.string.gank,mSubType,currentPager);
     }
 
     @Override
@@ -95,23 +95,23 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<R
     }
 
     @Override
-    public void onSuccess(List<ResponseImageEntity.ImgsBean> imageList)
+    public void onSuccess(List<ResponseGankEntity> gankList)
     {
-        if(imageList.size() >=1)
+        if(gankList.size() >=1)
             mRecyclerView.setVisibility(View.VISIBLE);
         mRefreshLayout.setRefreshing(false);
         if(isLoadMore)
         {
-            if(imageList.size() == 0)
+            if(gankList.size() == 0)
                 mAdapter.showLoadEndView();
             else
             {
-                mAdapter.setLoadMoreData(imageList);
+                mAdapter.setLoadMoreData(gankList);
                 tempPager++;
             }
         }else
         {
-            mAdapter.setNewData(imageList);
+            mAdapter.setNewData(gankList);
             mRefreshLayout.setEnabled(false);
         }
     }

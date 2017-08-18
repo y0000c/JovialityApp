@@ -28,17 +28,27 @@
         <item>@string/news</item>
         <item>@string/image</item>
         <item>@string/video</item>
+        <item>@string/gank</item>
     </string-array>
 
     <string name="news">新闻</string>
     <string-array name="news">
+        <item>11</item>
+        <item>22</item>
+        <item>33</item>
+        <item>44</item>
+        <item>55</item>
+    </string-array>
+
+    <string name="gank">干货</string>
+    <string-array name="ganks">
         <item>all</item>
+        <item>前端</item>
         <item>Android</item>
         <item>iOS</item>
-        <item>前端</item>
-        <item>瞎推荐</item>
         <item>拓展资源</item>
     </string-array>
+
 
     <string name="image">图库</string>
     <string-array name="images">
@@ -58,11 +68,6 @@
         <item>5555</item>
         <item>6666</item>
     </string-array>
-
-
-
-
-
 
 
     <!-- TODO: Remove or change this placeholder text -->

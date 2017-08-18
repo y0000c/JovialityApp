@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import demo.yc.joviality.ui.adapter.MainTypeFragAdapter;
+import demo.yc.joviality.ui.fragment.GanksListFragment;
 import demo.yc.joviality.ui.fragment.ImageListFragment;
 import demo.yc.joviality.ui.fragment.NewsListFragment;
 import demo.yc.joviality.ui.fragment.VideoListFragment;
@@ -78,23 +79,27 @@ public class MainTypeFragment extends BaseFragment
         fragList = new ArrayList<>();
 
         LogUtil.d("type","当前type--"+currentType);
-        if (currentType.equals("新闻"))
+        if (currentType.equals(ResUtils.resToStr(mContext,R.string.news)))
         {
             titleList = ResUtils.resToStrList(mContext, R.array.news);
             for (String item : titleList)
                 fragList.add(NewsListFragment.newInstance(item));
-        } else if (currentType.equals("图库"))
+        } else if (currentType.equals(ResUtils.resToStr(mContext,R.string.image)))
         {
             titleList = ResUtils.resToStrList(mContext, R.array.images);
             for (String item : titleList)
                 fragList.add(ImageListFragment.newInstance(item));
-        } else if (currentType.equals("视频"))
+        } else if (currentType.equals(ResUtils.resToStr(mContext,R.string.video)))
         {
             titleList = ResUtils.resToStrList(mContext, R.array.videos);
             for (String item : titleList)
                 fragList.add(VideoListFragment.newInstance(item));
-        } else
+        }
+        else if (currentType.equals(ResUtils.resToStr(mContext,R.string.gank)))
         {
+            titleList = ResUtils.resToStrList(mContext, R.array.ganks);
+            for (String item : titleList)
+                fragList.add(GanksListFragment.newInstance(item));
         }
 
     }

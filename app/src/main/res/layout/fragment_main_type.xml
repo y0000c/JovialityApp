@@ -15,6 +15,8 @@
             yc:tabIndicatorColor="@color/tab_indicator"
             yc:tabIndicatorHeight="@dimen/tab_line_height"
             yc:tabSelectedTextColor="@color/tab_selected"
+            yc:tabTextAppearance="@style/text_lowercase"
+
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
     </android.support.design.widget.AppBarLayout>
 

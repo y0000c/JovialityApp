@@ -5,11 +5,10 @@ import android.content.Context;
 
 import java.util.List;
 
-import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.joviality.interfaces.IListDataCallback;
-import demo.yc.joviality.mvp.mvpmodel.ImageListFragModelImp;
-import demo.yc.joviality.mvp.mvppresenter.base.ImageListPresenter;
-import demo.yc.joviality.mvp.mvpview.ImageFragListView;
+import demo.yc.joviality.mvp.mvpmodel.FragListModelImp;
+import demo.yc.joviality.mvp.mvppresenter.base.FragListPresenter;
+import demo.yc.joviality.mvp.mvpview.FragListView;
 
 /**
  * @author: YC
@@ -17,40 +16,32 @@ import demo.yc.joviality.mvp.mvpview.ImageFragListView;
  * @time: 16:43
  */
 
-public class ImageListPresenterImp implements
-        ImageListPresenter, IListDataCallback<ImageEntity>
+public class FragListPresenterImp<T> implements
+        FragListPresenter, IListDataCallback<T>
 {
     private Context mContext;
 
-    private ImageFragListView mView;
+    private FragListView mView;
 
-    private ImageListFragModelImp mModelImp;
+    private FragListModelImp<T> mModelImp;
 
 
-    public ImageListPresenterImp(Context context,ImageFragListView view)
+    public FragListPresenterImp(Context context, FragListView view)
     {
         this.mContext = context;
         this.mView = view;
-        mModelImp = new ImageListFragModelImp(this);
+        mModelImp = new FragListModelImp<T>(this);
     }
 
 
     @Override
-    public void loadListData(String requestTag, int page)
+    public void loadListData(int item,String requestTag, int page)
     {
-        mModelImp.getListData(requestTag,page);
+        mModelImp.getListData(item,requestTag,page);
     }
 
     @Override
-    public void onItemClick()
-    {
-
-    }
-
-
-    // 请求数据后的三个回调
-    @Override
-    public void onSuccess(final List<ImageEntity> data)
+    public void onSuccess(final List<T> data)
     {
         ((Activity)mContext).runOnUiThread(new Runnable()
         {
@@ -60,9 +51,7 @@ public class ImageListPresenterImp implements
                 mView.onSuccess(data);
             }
         });
-
     }
-
 
     @Override
     public void onError(final String msg)

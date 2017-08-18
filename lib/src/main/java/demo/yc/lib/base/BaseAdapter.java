@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.yc.lib.R;
 import demo.yc.lib.listener.IRecyclerItemClickListener;
 import demo.yc.lib.listener.IRecyclerLoadMoreListener;
 import demo.yc.lib.utils.ResUtils;
@@ -50,7 +51,13 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         if(datas == null)
             datas = new ArrayList<>();
         mDatas = datas;
+
+        setLoadingView(R.layout.base_load_loading_layout);
+        setLoadEndView(R.layout.base_load_end_layout);
+        setLoadFailedView(R.layout.base_load_failed_layout);
+
     }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
@@ -134,6 +141,14 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
             public void onScrollStateChanged(RecyclerView recyclerView, int newState)
             {
                 super.onScrollStateChanged(recyclerView, newState);
+
+                // 避免顶部留出空白
+                if(manager instanceof StaggeredGridLayoutManager)
+                {
+                    ((StaggeredGridLayoutManager)manager).invalidateSpanAssignments();
+                }
+
+                // 避免一开始就底部加载
                 if(getItemCount() > 1)
                     if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                         if (!isAutoLoadMore && findLastPosition(manager) + 1 == getItemCount()) {
@@ -224,15 +239,22 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         return false;
     }
 
+    // 绑定底部布局 和 根据具体情况显示
+
     public void setLoadingView(int resId)
     {
+        if(resId <= 0)
+            return;
         mLoadingView = ResUtils.inflate(mContext,resId,null);
-        addFooterView(mLoadingView);
     }
 
     public void setLoadFailedView(int resId)
     {
+        if(resId <= 0)
+            return;
         mLoadFailedView = ResUtils.inflate(mContext,resId,null);
+        if(mLoadFailedView == null)
+            return;
         mLoadFailedView.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -242,7 +264,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
                 loadMoreListener.onLoadMore(true);
             }
         });
-        addFooterView(mLoadFailedView);
+
     }
 
     public void setLoadEndView(int resId)
@@ -250,25 +272,47 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         if(resId <= 0)
             return;
         mLoadEndView = ResUtils.inflate(mContext,resId,null);
+
+    }
+
+    public void showLoadingView()
+    {
+        addFooterView(mLoadingView);
+    }
+
+    public void showLoadFiledView()
+    {
+        addFooterView(mLoadFailedView);
+    }
+
+    public void showLoadEndView()
+    {
         addFooterView(mLoadEndView);
     }
 
     private void addFooterView(View footerView)
     {
+        RelativeLayout.LayoutParams lp = null;
         if(footerView == null)
             return;
         if(mFooterLayout != null)
+        {
             mFooterLayout.removeAllViews();
+            lp = (RelativeLayout.LayoutParams) mFooterLayout.getLayoutParams();
+        }
         else
+        {
             mFooterLayout = new RelativeLayout(mContext);
-
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT
-                ,RelativeLayout.LayoutParams.WRAP_CONTENT);
-
+            lp = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT
+                    ,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        }
         mFooterLayout.addView(footerView,lp);
-
     }
+
+
+    // 刷新数据
+
     public void setNewData(List<T> data)
     {
         mDatas.clear();
@@ -283,6 +327,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         notifyItemChanged(size);
     }
 
+
+    // 绑定事件
 
     /**
      * 添加底部加载事件
@@ -301,6 +347,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     }
 
 
+    // 子类复写方法
 
     /**
      * 绑定具体的数据

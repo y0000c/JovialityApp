@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import static android.R.attr.width;
+
 /**
  * Author: Othershe
  * Time: 2016/8/18 10:55
@@ -33,9 +35,9 @@ public class ScaleImageView extends ImageView
             int height = MeasureSpec.getSize(heightMeasureSpec);
 
             float scale = (float) initHeight / (float) initWidth;
-            if (width > 0){
-                height = (int) ((float)width * scale);
-            }
+            while(scale >1.5)
+                scale-=0.5;
+            height = (int) ((float)width * scale);
             setMeasuredDimension(width, height);
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);

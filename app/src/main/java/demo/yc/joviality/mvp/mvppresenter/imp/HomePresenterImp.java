@@ -42,7 +42,5 @@ public class HomePresenterImp implements BasePresenter
     public void initialized()
     {
         mHomeView.showNavigationView(mHomeModelImp.getMainImageId(mContext));
-//        //mHomeView.showNavigationList(mHomeModelImp.getNavigationListData(mContext));
-//        mHomeView.showViewPagerList();
     }
 }

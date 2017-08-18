@@ -15,15 +15,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import demo.yc.joviality.ui.activity.base.BaseAppActivity;
-import demo.yc.joviality.ui.fragment.base.MainTypeFragment;
 import demo.yc.joviality.mvp.mvppresenter.base.BasePresenter;
 import demo.yc.joviality.mvp.mvppresenter.imp.HomePresenterImp;
 import demo.yc.joviality.mvp.mvpview.HomeView;
+import demo.yc.joviality.ui.activity.base.BaseAppActivity;
+import demo.yc.joviality.ui.fragment.base.MainTypeFragment;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.utils.ActivityUtils;
 import demo.yc.lib.utils.LogUtil;
@@ -46,7 +45,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
 
     private boolean isFinish = false;
 
-    private Map<Integer,MainTypeFragment> fragmentMap;
+    private Map<String,MainTypeFragment> fragmentMap;
 
     /**
      * HomeActivity对应的presenter
@@ -56,8 +55,8 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     /**
      * 当前frag 下标
      */
-    private int currentIndex = -1;
-    private List<String> fragTagList;
+    private String currentTag = "";
+
     /**
      * 管理frag
      */
@@ -81,10 +80,9 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     {
         fm = getSupportFragmentManager();
         fragmentMap = new HashMap<>();
-        fragTagList = ResUtils.resToStrList(this,R.array.part);
         mHomePresenter = new HomePresenterImp(this, this);
         mHomePresenter.initialized();
-        showCurrentFragment(0);
+        showCurrentFragment(ResUtils.resToStr(this,R.string.news));
     }
 
     /**
@@ -117,13 +115,20 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                 switch (item.getItemId())
                 {
                     case R.id.home_news_item:
-                        showCurrentFragment(0);
+                        showCurrentFragment(
+                                ResUtils.resToStr(HomeActivity.this,R.string.news));
                         break;
                     case R.id.home_images_item:
-                        showCurrentFragment(1);
+                        showCurrentFragment(
+                                ResUtils.resToStr(HomeActivity.this,R.string.image));
                         break;
                     case R.id.home_video_item:
-                        showCurrentFragment(2);
+                        showCurrentFragment(
+                                ResUtils.resToStr(HomeActivity.this,R.string.video));
+                        break;
+                    case R.id.home_gank_item:
+                        showCurrentFragment(
+                                ResUtils.resToStr(HomeActivity.this,R.string.gank));
                         break;
                 }
                 item.setChecked(true);
@@ -150,8 +155,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                     public void onDrawerClosed(View drawerView)
                     {
                         super.onDrawerClosed(drawerView);
-                        setTitle(mHomeNavigationView.getMenu()
-                                .getItem(currentIndex).getTitle());
+                        setTitle(currentTag);
                     }
                 };
         mDrawerToggle.syncState();
@@ -163,37 +167,37 @@ public class HomeActivity extends BaseAppActivity implements HomeView
 
     /**
      * 显示选中的fragment
-     * @param index
+     * @param targetTag
      */
-    private void showCurrentFragment(int index)
+    private void showCurrentFragment(String targetTag)
     {
-        if (currentIndex != index)
+        if (!currentTag.equals(targetTag))
         {
-            doReplace(currentIndex,index);
-            currentIndex = index;
+            doReplace(currentTag,targetTag);
+            currentTag = targetTag;
         }
     }
 
     /**
      * 完成fragment替换任务
-     * @param lastIndex
-     * @param index
+     * @param lastTag
+     * @param targetTag
      */
-    private void doReplace(int lastIndex,int index)
+    private void doReplace(String lastTag,String targetTag)
     {
         // 如果当前的frag未创建，则创建一个
-        if(fragmentMap.get(index) == null)
+        if(fragmentMap.get(targetTag) == null)
         {
             MainTypeFragment fragment =
-                    MainTypeFragment.newInstance(fragTagList.get(index));
-            fragmentMap.put(index,fragment);
+                    MainTypeFragment.newInstance(targetTag);
+            fragmentMap.put(targetTag,fragment);
 
             fm.beginTransaction().add(R.id.home_frame_layout,fragment).commit();
         } // 如果已经存在，则使用show 和 hide替代
-        if(fragmentMap.get(lastIndex) != null){
+        if(fragmentMap.get(lastTag) != null){
             fm.beginTransaction()
-                    .hide(fragmentMap.get(lastIndex))
-                    .show(fragmentMap.get(index))
+                    .hide(fragmentMap.get(lastTag))
+                    .show(fragmentMap.get(targetTag))
                     .commit();
         }
     }

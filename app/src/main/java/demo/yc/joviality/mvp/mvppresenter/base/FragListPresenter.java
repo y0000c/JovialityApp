@@ -6,9 +6,6 @@ package demo.yc.joviality.mvp.mvppresenter.base;
  * @time: 16:34
  */
 
-public interface ImageListPresenter
-{
-    void loadListData(String requestTag,int page);
-
-    void onItemClick();
+public interface FragListPresenter<T>{
+    void loadListData(int item,String requestTag,int page);
 }

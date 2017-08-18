@@ -16,7 +16,14 @@ import demo.yc.lib.utils.LogUtil;
 public class URLHelper
 {
     public static final int PAGE_LIMIT = 20;
-    public static String getImagesListUrl(String category, int pageNum) {
+
+    /**
+     * 获取百度图片url
+     * @param category
+     * @param pageCount
+     * @return
+     */
+    public static String getImagesListUrl(String category, int pageCount) {
         StringBuffer sb = new StringBuffer();
         sb.append(APIContent.BAIDU_IMAGES_URLS);
         sb.append("?col=");
@@ -32,14 +39,35 @@ public class URLHelper
             e.printStackTrace();
         }
         sb.append("&pn=");
-        sb.append(pageNum * PAGE_LIMIT);
+        sb.append(pageCount * PAGE_LIMIT);
         sb.append("&rn=");
         sb.append(PAGE_LIMIT);
         sb.append("&from=1");
 
-        LogUtil.d("url",category+"--"+pageNum);
+        LogUtil.d("url",category+"--"+pageCount);
         LogUtil.d("url",sb.toString());
         return sb.toString();
     }
 
+    /**
+     * 获取it学习文章URl
+     * @param category
+     * @param pageCount
+     * @return
+     */
+    public static String getStudyListUrl(String category,int pageCount)
+    {
+        StringBuffer  sb =  new StringBuffer();
+        sb.append(APIContent.IT_STUDY_URLS)
+          .append(category)
+          .append("/")
+          .append(PAGE_LIMIT)
+          .append("/")
+          .append(pageCount);
+
+        LogUtil.d("url",category+"--"+pageCount);
+        LogUtil.d("url",sb.toString());
+
+        return sb.toString();
+    }
 }

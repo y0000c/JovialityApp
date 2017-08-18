@@ -2,7 +2,9 @@ package demo.yc.lib.utils;
 
 import android.text.TextUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 集合了多种常用的简单实用的工具函数
@@ -36,6 +38,14 @@ public class CommonUtil
         Calendar calendar = Calendar.getInstance();
         LogUtil.d("day","获取当前星期几:"+(calendar.get(Calendar.DAY_OF_WEEK)-1));
         return calendar.get(Calendar.DAY_OF_WEEK)-1;
+    }
+
+    public static String getTodayString()
+    {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
+
     }
 
 }

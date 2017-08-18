@@ -34,7 +34,7 @@ public class NewsListFragment extends SubTypeFragment
     @Override
     protected int getContentLayoutId()
     {
-        return R.layout.fragment_list_news;
+        return R.layout.fragment_list_type;
     }
 
     @Override
@@ -45,6 +45,12 @@ public class NewsListFragment extends SubTypeFragment
 
     @Override
     protected void getData()
+    {
+
+    }
+
+    @Override
+    public void onRefresh()
     {
 
     }
