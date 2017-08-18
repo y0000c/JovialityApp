@@ -3,6 +3,7 @@ package demo.yc.joviality.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +25,7 @@ import demo.yc.joviality.mvp.mvppresenter.base.BasePresenter;
 import demo.yc.joviality.mvp.mvppresenter.imp.HomePresenterImp;
 import demo.yc.joviality.mvp.mvpview.HomeView;
 import demo.yc.jovialityyc.R;
+import demo.yc.lib.utils.ActivityUtils;
 import demo.yc.lib.utils.LogUtil;
 import demo.yc.lib.utils.ResUtils;
 
@@ -41,6 +43,8 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     NavigationView mHomeNavigationView;
     @BindView(R.id.home_drawer_layout)
     DrawerLayout mHomeDrawerLayout;
+
+    private boolean isFinish = false;
 
     private Map<Integer,MainTypeFragment> fragmentMap;
 
@@ -93,7 +97,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     {
         // 设置最开始的标题
         setTitle(mHomeNavigationView.getMenu()
-                .getItem(currentIndex).getTitle());
+                .getItem(0).getTitle());
 
         // 设置navigationView 的 头布局图片背景
         View headerView = mHomeNavigationView.getHeaderView(0);
@@ -218,4 +222,34 @@ public class HomeActivity extends BaseAppActivity implements HomeView
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public void onBackPressed()
+    {
+        if(mHomeDrawerLayout.isDrawerOpen(GravityCompat.START))
+        {
+            mHomeDrawerLayout.closeDrawer(GravityCompat.START);
+            return;
+        }
+        else
+        {
+            if(isFinish)
+            {
+                ActivityUtils.getInstance().clearActivity();
+                return;
+            }
+
+            isFinish = true;
+            Snackbar.make(mHomeDrawerLayout
+                    ,"再次点击退出",Snackbar.LENGTH_SHORT).show();
+            mHomeDrawerLayout.postDelayed(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    isFinish = false;
+                }
+            },2000);
+        }
+    }
 }

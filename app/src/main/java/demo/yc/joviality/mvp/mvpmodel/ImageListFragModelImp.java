@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import demo.yc.joviality.entity.ImageEntity;
-import demo.yc.joviality.entity.ResponseImageListEntity;
 import demo.yc.joviality.http.URLHelper;
 import demo.yc.joviality.interfaces.IListDataCallback;
 import demo.yc.lib.http.HttpHelper;
@@ -29,17 +28,16 @@ public class ImageListFragModelImp
 {
 
     private IListDataCallback callback;
-    public ImageListFragModelImp(IListDataCallback back)
+    public ImageListFragModelImp(IListDataCallback<ImageEntity> back)
     {
         callback = back;
     }
 
-
-    public void getListData(final String requestTag, int eventCode, String keyWords, int page)
+    public void getListData(final String requestTag,int page)
     {
-
-        String url = URLHelper.getImagesListUrl("明星",1);
-        HttpHelper.requestGet(url,new Callback(){
+        String url = URLHelper.getImagesListUrl(requestTag, page);
+        HttpHelper.requestGet(url, new Callback()
+        {
             @Override
             public void onFailure(Call call, IOException e)
             {
@@ -50,48 +48,42 @@ public class ImageListFragModelImp
             public void onResponse(Call call, Response response) throws IOException
             {
                 String result = response.body().string();
-                LogUtil.d("result",result);
-                if(response.isSuccessful())
+                LogUtil.d("result", result);
+                if (response.isSuccessful())
                 {
                     try
                     {
                         JSONObject object = new JSONObject(result);
                         JSONArray array = object.getJSONArray("imgs");
-                       // LogUtil.d("result",array.length()+array.getJSONObject(0).getString("imageUrl"));
-                        ResponseImageListEntity data = new ResponseImageListEntity();
+                        LogUtil.d("result", array.length() + array.getJSONObject(0).getString("thumbnailUrl"));
                         List<ImageEntity> imageList = new ArrayList<>();
 
-                        for(int i=0;i<array.length();i++)
+                        for (int i = 0; i < array.length(); i++)
                         {
                             try
                             {
                                 JSONObject obj = array.getJSONObject(i);
-                                String url = obj.getString("imageUrl");
-                               // int width = obj.get();
+                                String url = obj.getString("thumbnailUrl");
+                                int width = obj.getInt("thumbnailWidth");
+                                int height = obj.getInt("thumbnailHeight");
                                 if (!CommonUtil.isEmpty(url))
-                                    imageList.add(new ImageEntity(url,200+i*20,200+i*50));
+                                {
+                                    imageList.add(new ImageEntity(url, width, height));
+                                }
                             } catch (Exception e)
                             {
                                 e.printStackTrace();
                             }
                         }
-
-                        data.setImageList(imageList);
-                        callback.onSuccess(1,data);
+                        callback.onSuccess(imageList);
                     } catch (JSONException e)
                     {
-
+                        callback.onError("解析异常");
                     }
 
                 }
             }
-        });
 
-//        ResponseImageListEntity data = new ResponseImageListEntity();
-//        List<ImageEntity> imageList = new ArrayList<>();
-//        for(int i=0;i<10;i++)
-//            imageList.add(new ImageEntity("http://img04.sogoucdn.com/app/a/100520076/ae30ad2e44cb87ebaa00235b42f47a4d"));
-//        data.setImageList(imageList);
-//        callback.onSuccess(eventCode,data);
+        });
     }
 }

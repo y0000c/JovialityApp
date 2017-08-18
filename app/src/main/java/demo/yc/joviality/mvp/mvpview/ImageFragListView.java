@@ -1,6 +1,8 @@
 package demo.yc.joviality.mvp.mvpview;
 
-import demo.yc.joviality.entity.ResponseImageListEntity;
+import java.util.List;
+
+import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.joviality.mvp.mvpview.base.BaseAppView;
 
 /**
@@ -11,9 +13,5 @@ import demo.yc.joviality.mvp.mvpview.base.BaseAppView;
 
 public interface ImageFragListView extends BaseAppView
 {
-    void refreshListData(ResponseImageListEntity data);
-
-    void addMoreListData();
-
-
+    void onSuccess(List<ImageEntity> imageList);
 }

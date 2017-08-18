@@ -42,12 +42,11 @@
 
     <string name="image">图库</string>
     <string-array name="images">
-        <item>111</item>
-        <item>2222</item>
-        <item>333</item>
-        <item>444</item>
-        <item>5555</item>
-        <item>6666</item>
+        <item>家居</item>
+        <item>动物</item>
+        <item>动漫</item>
+        <item>体育</item>
+        <item>搞笑</item>
     </string-array>
 
     <string name="video">视频</string>

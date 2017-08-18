@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import demo.yc.joviality.api.APIContent;
+import demo.yc.lib.utils.LogUtil;
 
 /**
  * @author: YC
@@ -15,7 +16,6 @@ import demo.yc.joviality.api.APIContent;
 public class URLHelper
 {
     public static final int PAGE_LIMIT = 20;
-
     public static String getImagesListUrl(String category, int pageNum) {
         StringBuffer sb = new StringBuffer();
         sb.append(APIContent.BAIDU_IMAGES_URLS);
@@ -36,6 +36,9 @@ public class URLHelper
         sb.append("&rn=");
         sb.append(PAGE_LIMIT);
         sb.append("&from=1");
+
+        LogUtil.d("url",category+"--"+pageNum);
+        LogUtil.d("url",sb.toString());
         return sb.toString();
     }
 

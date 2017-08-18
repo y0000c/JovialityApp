@@ -17,4 +17,6 @@
 
     <!--透明状态栏-->
     <dimen name="fit_padding_top">0dp</dimen>
+
+    <dimen name="tab_line_height">3dp</dimen>
 </resources>

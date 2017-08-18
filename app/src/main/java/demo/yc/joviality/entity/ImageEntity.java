@@ -9,9 +9,16 @@ package demo.yc.joviality.entity;
 
 public class ImageEntity
 {
+    // 列表
+    //thumbnailUrl
+            // detail
+       //     thumbLargeUrl
     private String small;
     private String large;
-
+    //downloadUrl
+         //   imageUrl
+    //imageWidth
+        //    imageHeight
     private int width;
     private int height;
 

@@ -19,9 +19,12 @@ public class HttpHelper
     public static void requestGet(String url,Callback callback)
     {
         Request request = new Request.Builder().url(url).build();
-
         Call call = client.newCall(request);
-
         call.enqueue(callback);
     }
+
+    public static void cancelRequest(String url)
+    {
+    }
+
 }

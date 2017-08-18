@@ -26,7 +26,7 @@ public class ActivityUtils
      * 利用单例模式，二层判断的同步单例模式
      * @return
      */
-    public static ActivityUtils newInstance()
+    public static ActivityUtils getInstance()
     {
         if(instance == null)
         {

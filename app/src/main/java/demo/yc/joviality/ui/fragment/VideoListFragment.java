@@ -6,12 +6,14 @@ import android.support.v4.app.Fragment;
 
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
+import demo.yc.lib.utils.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class VideoListFragment extends SubTypeFragment
 {
+    private String mSubType;
     public static VideoListFragment newInstance(String type)
     {
         VideoListFragment fragment = new VideoListFragment();
@@ -24,7 +26,13 @@ public class VideoListFragment extends SubTypeFragment
     @Override
     protected void initData()
     {
-
+        if (getArguments() == null)
+        {
+            LogUtil.d("fragment","video arguments is null");
+            return;
+        }
+        mSubType = getArguments().getString(SUB_TYPE);
+        LogUtil.d("fragment","newFrag--init");
     }
 
     @Override

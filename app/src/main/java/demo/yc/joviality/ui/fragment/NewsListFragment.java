@@ -2,13 +2,14 @@ package demo.yc.joviality.ui.fragment;
 
 
 import android.os.Bundle;
-
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
+import demo.yc.lib.utils.LogUtil;
 
 
 public class NewsListFragment extends SubTypeFragment
 {
+    private String mSubType ;
     public static NewsListFragment newInstance(String type)
     {
         NewsListFragment fragment = new NewsListFragment();
@@ -21,7 +22,13 @@ public class NewsListFragment extends SubTypeFragment
     @Override
     protected void initData()
     {
-
+        if (getArguments() == null)
+        {
+            LogUtil.d("fragment","news arguments is null");
+            return;
+        }
+        mSubType = getArguments().getString(SUB_TYPE);
+        LogUtil.d("fragment","newFrag--init"+mSubType);
     }
 
     @Override

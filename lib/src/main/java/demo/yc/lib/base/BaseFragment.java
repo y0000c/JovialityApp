@@ -27,7 +27,7 @@ import demo.yc.lib.utils.LogUtil;
 public abstract class BaseFragment extends Fragment
 {
 
-    protected  static  String TAG = null;
+    protected  static String TAG = null;
     /**
      * 上下文对象
      */

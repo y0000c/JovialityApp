@@ -25,7 +25,7 @@ public abstract class SubTypeFragment extends BaseFragment
     public void setUserVisibleHint(boolean isVisibleToUser)
     {
         super.setUserVisibleHint(isVisibleToUser);
-        LogUtil.d(TAG,"is visible to User-->"+isVisibleToUser);
+        LogUtil.d("visible",TAG+" is visible to User-->"+isVisibleToUser);
         this.isVisibleToUser = isVisibleToUser;
         initGetData();
     }
@@ -44,6 +44,7 @@ public abstract class SubTypeFragment extends BaseFragment
      */
     protected void initGetData()
     {
+        //LogUtil.d("visible",isVisibleToUser+"--"+isViewInitiated+"--"+isDataInitiated);
         if(isViewInitiated && isVisibleToUser && !isDataInitiated)
         {
             getData();

@@ -3,7 +3,9 @@ package demo.yc.joviality.mvp.mvppresenter.imp;
 import android.app.Activity;
 import android.content.Context;
 
-import demo.yc.joviality.entity.ResponseImageListEntity;
+import java.util.List;
+
+import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.joviality.interfaces.IListDataCallback;
 import demo.yc.joviality.mvp.mvpmodel.ImageListFragModelImp;
 import demo.yc.joviality.mvp.mvppresenter.base.ImageListPresenter;
@@ -15,7 +17,8 @@ import demo.yc.joviality.mvp.mvpview.ImageFragListView;
  * @time: 16:43
  */
 
-public class ImageListPresenterImp implements ImageListPresenter, IListDataCallback<ResponseImageListEntity>
+public class ImageListPresenterImp implements
+        ImageListPresenter, IListDataCallback<ImageEntity>
 {
     private Context mContext;
 
@@ -33,14 +36,9 @@ public class ImageListPresenterImp implements ImageListPresenter, IListDataCallb
 
 
     @Override
-    public void loadListData(String requestTag, int eventCode, String keywords, int page, boolean isRefresh)
+    public void loadListData(String requestTag, int page)
     {
-        mView.hideLoading();
-        if(!isRefresh)
-            mView.showLoading("正在加载图片");
-
-        // 回调的结果在onFailure  onResponse
-        mModelImp.getListData(requestTag,eventCode,keywords,page);
+        mModelImp.getListData(requestTag,page);
     }
 
     @Override
@@ -52,29 +50,31 @@ public class ImageListPresenterImp implements ImageListPresenter, IListDataCallb
 
     // 请求数据后的三个回调
     @Override
-    public void onSuccess(int eventCode, final ResponseImageListEntity data)
+    public void onSuccess(final List<ImageEntity> data)
     {
         ((Activity)mContext).runOnUiThread(new Runnable()
         {
             @Override
             public void run()
             {
-                mView.hideLoading();
-                mView.refreshListData(data);
+                mView.onSuccess(data);
             }
         });
 
     }
 
-    @Override
-    public void onError(String msg)
-    {
-
-    }
 
     @Override
-    public void onException(String msg)
+    public void onError(final String msg)
     {
-
+        ((Activity)mContext).runOnUiThread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                mView.onError(msg);
+            }
+        });
     }
+
 }

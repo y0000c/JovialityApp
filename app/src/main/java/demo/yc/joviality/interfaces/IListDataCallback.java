@@ -1,5 +1,7 @@
 package demo.yc.joviality.interfaces;
 
+import java.util.List;
+
 /**
  * @author: YC
  * @date: 2017/8/15 0015
@@ -9,9 +11,8 @@ package demo.yc.joviality.interfaces;
 
 public interface IListDataCallback<T>
 {
-    void onSuccess(int eventCode,T data);
+    void onSuccess(List<T> data);
 
     void onError(String msg);
 
-    void onException(String msg);
 }
