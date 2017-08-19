@@ -4,7 +4,6 @@ package demo.yc.joviality.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +13,7 @@ import java.util.List;
 import demo.yc.joviality.entity.ResponseGankEntity;
 import demo.yc.joviality.mvp.mvppresenter.imp.FragListPresenterImp;
 import demo.yc.joviality.mvp.mvpview.FragListView;
+import demo.yc.joviality.ui.activity.GankDetailActivity;
 import demo.yc.joviality.ui.adapter.GankListAdapter;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
@@ -50,7 +50,9 @@ public class GanksListFragment extends SubTypeFragment implements FragListView<R
             @Override
             public void onItemClick(ViewHolder holder, ResponseGankEntity.ResultsBean data, int position)
             {
-                Log.w("click","click---->"+position);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(GankDetailActivity.GANK_TAG,data);
+                mContext.jumpToActivity(GankDetailActivity.class,bundle,false);
             }
         });
         mAdapter.setOnLoadMoreListener(new IRecyclerLoadMoreListener()

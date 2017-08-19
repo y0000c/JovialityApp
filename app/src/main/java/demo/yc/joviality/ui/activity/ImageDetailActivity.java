@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
@@ -32,7 +34,6 @@ import demo.yc.lib.utils.LogUtil;
 public class ImageDetailActivity extends BaseDetailActivity
 {
 
-
     @BindView(R.id.image_detail_item)
     ImageView mImageView;
 
@@ -44,8 +45,6 @@ public class ImageDetailActivity extends BaseDetailActivity
     @BindView(R.id.image_detail_prepare_layout)
     RelativeLayout mLoadingLayout;
     private ResponseImageEntity.ImgsBean imageData;
-
-
     private ObjectAnimator moveUp;
     private ObjectAnimator moveDown;
     private boolean isShow = false;
@@ -134,13 +133,16 @@ public class ImageDetailActivity extends BaseDetailActivity
             imageData.setImageUrl(imageData.getThumbnailUrl());
         LogUtil.d("glide", imageData.getImageUrl());
 
-        Glide.with(this).load(R.drawable.loading).into(mLodingView);
+        Glide.with(this).load(R.drawable.loading)
+                .apply(new RequestOptions().priority(Priority.LOW))
+                .into(mLodingView);
         Glide.with(this).asBitmap().load(imageData.getThumbnailUrl()).into(mSmallView);
 
         Glide.with(this)
                 .applyDefaultRequestOptions(new RequestOptions().fitCenter()
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
                 .load(imageData.getImageUrl())
+                .transition(new DrawableTransitionOptions().crossFade(1000))
                 .listener(new RequestListener<Drawable>()
                 {
                     @Override
@@ -164,7 +166,6 @@ public class ImageDetailActivity extends BaseDetailActivity
                 })
                 .into(mImageView);
     }
-
 
     @OnClick(R.id.image_detail_item)
     public void onViewClicked()
@@ -197,19 +198,7 @@ public class ImageDetailActivity extends BaseDetailActivity
     }
 
     @Override
-    public Object getShareData()
-    {
-        return imageData;
-    }
-
-    @Override
-    public Object getCollectData()
-    {
-        return imageData;
-    }
-
-    @Override
-    public Object getDownloadData()
+    public Object getDoneData()
     {
         return imageData;
     }
@@ -229,4 +218,10 @@ public class ImageDetailActivity extends BaseDetailActivity
                 }).create().show();
     }
 
+    @Override
+    public void onBackPressed()
+    {
+
+        super.onBackPressed();
+    }
 }

@@ -45,11 +45,8 @@ public abstract class BaseDetailActivity extends BaseAppActivity
         LogUtil.d("menu","download----");
     }
 
-    public abstract Object getShareData();
+    public abstract Object getDoneData();
 
-    public abstract Object getCollectData();
-
-    public abstract Object getDownloadData();
 }
 
 

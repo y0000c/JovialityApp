@@ -117,7 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.finish();
         ActivityUtils.getInstance().removeActivity(this);
-        LogUtil.d(TAG,"finish");
+        LogUtil.d("life","finish--"+TAG+"--"+this.toString());
     }
 
     @Override
@@ -125,7 +125,7 @@ public abstract class BaseActivity extends AppCompatActivity
     {
         super.onDestroy();
         unbinder.unbind();
-        LogUtil.d(TAG,"onDestroy");
+        LogUtil.d("life","onDestroy--"+TAG+"--"+this.toString());
     }
 
     // ***********************定义公用方法阶段*****************
@@ -141,7 +141,9 @@ public abstract class BaseActivity extends AppCompatActivity
         Intent intent = new Intent(this,clazz);
         if(extras != null)
             intent.putExtras(extras);
+
         startActivity(intent);
+
         if(isKill)
             finish();
     }

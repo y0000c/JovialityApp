@@ -2,6 +2,7 @@ package demo.yc.joviality.entity;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class ResponseGankEntity
         this.results = results;
     }
 
-    public static class ResultsBean
+    public static class ResultsBean implements Serializable
     {
         /**
          * _id : 5992ad85421aa9672cdf0810

@@ -12,20 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="demo.yc.joviality.ui.activity.SplashActivity">
+        <activity
+            android:name="demo.yc.joviality.ui.activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="demo.yc.joviality.ui.activity.HomeActivity">
+        <activity
+            android:name="demo.yc.joviality.ui.activity.HomeActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name="demo.yc.joviality.ui.activity.CollectionActivity">
+        <activity
+            android:name="demo.yc.joviality.ui.activity.CollectionActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name="demo.yc.joviality.ui.activity.ImageDetailActivity">
+        <activity
+            android:name="demo.yc.joviality.ui.activity.ImageDetailActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name="demo.yc.joviality.ui.activity.base.BaseDetailActivity">
+        <activity android:name="demo.yc.joviality.ui.activity.GankDetailActivity">
         </activity>
     </application>
 

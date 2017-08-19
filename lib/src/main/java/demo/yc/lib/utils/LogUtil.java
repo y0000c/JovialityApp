@@ -46,7 +46,7 @@ public class LogUtil
         sb.append(stackTraceElement.getMethodName()+" ]");
         sb.append(" : ");
 
-        if( !(msg instanceof String))
+        if( msg != null && !(msg instanceof String))
             msg.toString();
          sb.append(msg);
         return sb.toString();

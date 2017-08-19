@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:background="#dd545454"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#dd545454"
     tools:context="demo.yc.joviality.ui.activity.ImageDetailActivity">
 
     <RelativeLayout
@@ -13,29 +13,27 @@
 
         <RelativeLayout
             android:id="@+id/image_detail_prepare_layout"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_centerInParent="true">
             <ImageView
                 android:id="@+id/image_detail_prepare_small"
-                android:layout_centerInParent="true"
-                android:layout_width="150dp"
-                android:layout_height="150dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"/>
             <ImageView
                 android:id="@+id/image_detail_prepare_gif"
-                android:layout_centerInParent="true"
-                android:layout_width="80dp"
-                android:layout_height="80dp"/>
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"/>
         </RelativeLayout>
 
         <ImageView
-            android:layout_centerInParent="true"
+            android:transitionName="@string/image"
+            android:id="@+id/image_detail_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/image_detail_item"/>
-
-
-
+            android:layout_centerInParent="true"/>
     </RelativeLayout>
 
 
