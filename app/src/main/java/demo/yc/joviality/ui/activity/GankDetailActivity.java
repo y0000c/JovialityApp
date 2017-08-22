@@ -6,18 +6,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import butterknife.BindView;
-import demo.yc.joviality.entity.ResponseGankEntity;
+import demo.yc.joviality.entity.GankEntity;
 import demo.yc.joviality.ui.activity.base.BaseDetailActivity;
 import demo.yc.jovialityyc.R;
 
 public class GankDetailActivity extends BaseDetailActivity
 {
-
     @BindView(R.id.gank_detail_layout)
     ViewGroup layout;
     @BindView(R.id.gank_detail_progress)
@@ -25,7 +26,7 @@ public class GankDetailActivity extends BaseDetailActivity
     @BindView(R.id.gank_detail_web)
     WebView mWebView;
 
-    private ResponseGankEntity.ResultsBean gankItem;
+    private GankEntity gankItem;
 
     public static final String GANK_TAG = "gank_detail";
     private static final int OPEN_OTHER = 0x2222;
@@ -33,7 +34,7 @@ public class GankDetailActivity extends BaseDetailActivity
     @Override
     protected void getBundleExtras(Bundle extras)
     {
-        gankItem = (ResponseGankEntity.ResultsBean) extras.getSerializable(GANK_TAG);
+        gankItem = (GankEntity) extras.getSerializable(GANK_TAG);
         if (gankItem == null)
             finish();
     }
@@ -61,7 +62,6 @@ public class GankDetailActivity extends BaseDetailActivity
         settings.setBlockNetworkImage(false);
         // 启动dom缓存
         settings.setDomStorageEnabled(true);
-
         mWebView.setWebChromeClient(new WebChromeClient(){
             @Override
             public void onProgressChanged(WebView view, int newProgress)
@@ -74,10 +74,16 @@ public class GankDetailActivity extends BaseDetailActivity
                     setTitle(gankItem.getDescX());
                 }
             }
-
         });
 
-
+        mWebView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request)
+            {
+                view.loadUrl(request.toString());
+                return true;
+            }
+        });
         mWebView.loadUrl(gankItem.getUrlX());
     }
 

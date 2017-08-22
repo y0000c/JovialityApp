@@ -6,18 +6,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.yc.joviality.MyApp;
 import demo.yc.joviality.entity.ImageEntity;
-import demo.yc.joviality.mvp.mvppresenter.imp.FragListPresenterImp;
-import demo.yc.joviality.mvp.mvpview.FragListView;
+import demo.yc.joviality.gen.ImageEntityDao;
 import demo.yc.joviality.ui.activity.ImageDetailActivity;
 import demo.yc.joviality.ui.adapter.ImageListAdapter;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
-import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.ViewHolder;
 import demo.yc.lib.listener.IRecyclerItemClickListener;
 import demo.yc.lib.listener.IRecyclerLoadMoreListener;
@@ -26,15 +24,13 @@ import demo.yc.lib.utils.LogUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ImageListFragment extends SubTypeFragment implements FragListView<ImageEntity>
+public class CollectionImageFrag extends SubTypeFragment
 {
-    public static ImageListFragment newInstance(String type)
+    private ImageEntityDao dao ;
+
+    public static CollectionImageFrag newInstance()
     {
-        LogUtil.d("fragment",TAG+"--"+type);
-        ImageListFragment fragment = new ImageListFragment();
-        Bundle args = new Bundle();
-        args.putString(SUB_TYPE,type);
-        fragment.setArguments(args);
+        CollectionImageFrag fragment = new CollectionImageFrag();
         return fragment;
     }
 
@@ -42,7 +38,6 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
     protected void initEvents()
     {
         super.initEvents();
-      //  mainType = ResUtils.resToStr(mContext, R.string.image);
         mAdapter = new ImageListAdapter(getContext(),new ArrayList<ImageEntity>(),true);
         mAdapter.showLoadingView();
         mAdapter.setOnCLickListener(new IRecyclerItemClickListener<ImageEntity>()
@@ -72,37 +67,29 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
             }
         });
 
+
         StaggeredGridLayoutManager manager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(mAdapter);
-        mPresenter = new FragListPresenterImp(getContext(),this);
+
+        dao = MyApp.getDaoSession().getImageEntityDao();
+
     }
 
     @Override
     protected void getData()
     {
-        mPresenter.loadListData(R.string.image,mSubType,currentPager);
+        onSuccess(dao.queryBuilder().limit(10).list());
     }
 
-    @Override
-    public void onError(String msg)
-    {
-        Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
-
-        if(isLoadMore)
-            mAdapter.showLoadFiledView();
-        else
-            mRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
     public void onSuccess(List<ImageEntity> imageList)
     {
         if(imageList.size() >=1)
             mRecyclerView.setVisibility(View.VISIBLE);
         mRefreshLayout.setRefreshing(false);
+
         if(isLoadMore)
         {
             if(imageList.size() == 0)

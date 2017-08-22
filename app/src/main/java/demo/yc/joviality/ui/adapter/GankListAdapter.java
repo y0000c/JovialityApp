@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import demo.yc.joviality.MyApp;
-import demo.yc.joviality.entity.ResponseGankEntity;
+import demo.yc.joviality.entity.GankEntity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
 import demo.yc.lib.base.ViewHolder;
@@ -22,16 +22,16 @@ import demo.yc.lib.utils.LogUtil;
  * @detail:
  */
 
-public class GankListAdapter extends BaseAdapter<ResponseGankEntity.ResultsBean>
+public class GankListAdapter extends BaseAdapter<GankEntity>
 {
 
-    public GankListAdapter(Context context, List<ResponseGankEntity.ResultsBean> datas, boolean isOpenLoadMore)
+    public GankListAdapter(Context context, List<GankEntity> datas, boolean isOpenLoadMore)
     {
         super(context, datas, isOpenLoadMore);
     }
 
     @Override
-    protected void bindItemData(ViewHolder holder, ResponseGankEntity.ResultsBean resultsBean)
+    protected void bindItemData(ViewHolder holder, GankEntity resultsBean)
     {
         String who = resultsBean.getWhoX();
         String title = resultsBean.getDescX();

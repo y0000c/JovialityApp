@@ -236,7 +236,6 @@ public class HomeActivity extends BaseAppActivity implements HomeView
         if(mHomeDrawerLayout.isDrawerOpen(GravityCompat.START))
         {
             mHomeDrawerLayout.closeDrawer(GravityCompat.START);
-            return;
         }
         else
         {

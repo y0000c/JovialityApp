@@ -25,7 +25,7 @@ import com.bumptech.glide.request.target.Target;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import demo.yc.joviality.entity.ResponseImageEntity;
+import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.joviality.ui.activity.base.BaseDetailActivity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.utils.CommonUtil;
@@ -44,7 +44,8 @@ public class ImageDetailActivity extends BaseDetailActivity
     ImageView mLodingView;
     @BindView(R.id.image_detail_prepare_layout)
     RelativeLayout mLoadingLayout;
-    private ResponseImageEntity.ImgsBean imageData;
+
+    private ImageEntity imageData;
     private ObjectAnimator moveUp;
     private ObjectAnimator moveDown;
     private boolean isShow = false;
@@ -54,7 +55,7 @@ public class ImageDetailActivity extends BaseDetailActivity
     @Override
     protected void getBundleExtras(Bundle extras)
     {
-        imageData = (ResponseImageEntity.ImgsBean) extras.getSerializable(IMAGE_TAG);
+        imageData = (ImageEntity) extras.getSerializable(IMAGE_TAG);
         if (imageData == null)
         {
             finish();
@@ -131,11 +132,13 @@ public class ImageDetailActivity extends BaseDetailActivity
 
         if (CommonUtil.isEmpty(imageData.getImageUrl()))
             imageData.setImageUrl(imageData.getThumbnailUrl());
+
         LogUtil.d("glide", imageData.getImageUrl());
 
         Glide.with(this).load(R.drawable.loading)
                 .apply(new RequestOptions().priority(Priority.LOW))
                 .into(mLodingView);
+
         Glide.with(this).asBitmap().load(imageData.getThumbnailUrl()).into(mSmallView);
 
         Glide.with(this)

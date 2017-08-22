@@ -11,6 +11,7 @@ import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import demo.yc.lib.R;
 import demo.yc.lib.loading.ChangeViewController;
 import demo.yc.lib.utils.ActivityUtils;
 import demo.yc.lib.utils.LogUtil;
@@ -54,8 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
         // 如果上一个Activity传递过来的信息不为空
         Bundle extras = getIntent().getExtras();
-        if(extras != null)
-            getBundleExtras(extras);
+        getBundleExtras(extras);
 
         // 显示当前Activity的布局
         if(getLayoutId() != 0)
@@ -69,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     /**
-     * 5.0及以上透明状态栏
+     * 4.4及以上透明状态栏
      */
     private void initWindow(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -127,9 +127,7 @@ public abstract class BaseActivity extends AppCompatActivity
         unbinder.unbind();
         LogUtil.d("life","onDestroy--"+TAG+"--"+this.toString());
     }
-
     // ***********************定义公用方法阶段*****************
-
     /**
      * 跳转到指定activity
      * @param clazz         目标activity
@@ -143,7 +141,7 @@ public abstract class BaseActivity extends AppCompatActivity
             intent.putExtras(extras);
 
         startActivity(intent);
-
+        overridePendingTransition(R.anim.open,0);
         if(isKill)
             finish();
     }

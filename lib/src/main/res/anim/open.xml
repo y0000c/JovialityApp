@@ -2,14 +2,17 @@
 <!--这个是MainActivity的背景动画-->
 
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-     android:duration="1000"
-     android:fillAfter="true">
+     android:duration="300">
     <scale
-        android:fromXScale="0"
-        android:fromYScale="0"
+        android:fromXScale="0.5"
+        android:fromYScale="0.5"
         android:toXScale="1"
         android:toYScale="1"
         android:pivotX="50%"
         android:pivotY="50%"/>
+
+    <alpha
+        android:fromAlpha="0.5"
+        android:toAlpha="1"/>
 
 </set>

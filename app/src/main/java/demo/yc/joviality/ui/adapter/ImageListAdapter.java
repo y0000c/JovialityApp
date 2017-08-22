@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import demo.yc.joviality.entity.ResponseImageEntity;
+import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
 import demo.yc.lib.base.ViewHolder;
@@ -19,17 +19,17 @@ import demo.yc.lib.uis.ScaleImageView;
  * @detail:
  */
 
-public class ImageListAdapter extends BaseAdapter<ResponseImageEntity.ImgsBean>
+public class ImageListAdapter extends BaseAdapter<ImageEntity>
 {
     private Context mContext;
-    public ImageListAdapter(Context context, List<ResponseImageEntity.ImgsBean> datas, boolean isOpenLoadMore)
+    public ImageListAdapter(Context context, List<ImageEntity> datas, boolean isOpenLoadMore)
     {
         super(context, datas, isOpenLoadMore);
         mContext = context;
     }
 
     @Override
-    protected void bindItemData(ViewHolder holder, ResponseImageEntity.ImgsBean imageEntity)
+    protected void bindItemData(ViewHolder holder, ImageEntity imageEntity)
     {
         ScaleImageView imageView = holder.getItemView(R.id.recycler_image_item);
         imageView.setInitSize(imageEntity.getThumbnailWidth(),imageEntity.getImageHeight());

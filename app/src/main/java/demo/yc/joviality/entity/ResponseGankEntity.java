@@ -1,8 +1,5 @@
 package demo.yc.joviality.entity;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -20,7 +17,7 @@ public class ResponseGankEntity
      */
 
     private boolean error;
-    private List<ResultsBean> results;
+    private List<GankEntity> results;
 
     public boolean isError()
     {
@@ -32,149 +29,15 @@ public class ResponseGankEntity
         this.error = error;
     }
 
-    public List<ResultsBean> getResults()
+    public List<GankEntity> getResults()
     {
         return results;
     }
 
-    public void setResults(List<ResultsBean> results)
+    public void setResults(List<GankEntity> results)
     {
         this.results = results;
     }
 
-    public static class ResultsBean implements Serializable
-    {
-        /**
-         * _id : 5992ad85421aa9672cdf0810
-         * createdAt : 2017-08-15T16:15:01.769Z
-         * desc : 致Android开发 —— 灵活的Class替换插件
-         * images : ["http://img.gank.io/25efa54d-1baf-4e8c-8bde-260c476b4990"]
-         * publishedAt : 2017-08-17T11:36:42.967Z
-         * source : web
-         * type : Android
-         * url : https://github.com/dinuscxj/ClassPlugin
-         * used : true
-         * who : dinus_developer
-         */
-        @SerializedName("_id")
-        private String _idX;
-        @SerializedName("createdAt")
-        private String createdAtX;
-        @SerializedName("desc")
-        private String descX;
-        @SerializedName("publishedAt")
-        private String publishedAtX;
-        @SerializedName("source")
-        private String sourceX;
-        @SerializedName("type")
-        private String typeX;
-        @SerializedName("url")
-        private String urlX;
-        @SerializedName("used")
-        private boolean usedX;
-        @SerializedName("who")
-        private String whoX;
-        @SerializedName("images")
-        private List<String> imagesX;
 
-        public String get_idX()
-        {
-            return _idX;
-        }
-
-        public void set_idX(String _idX)
-        {
-            this._idX = _idX;
-        }
-
-        public String getCreatedAtX()
-        {
-            return createdAtX;
-        }
-
-        public void setCreatedAtX(String createdAtX)
-        {
-            this.createdAtX = createdAtX;
-        }
-
-        public String getDescX()
-        {
-            return descX;
-        }
-
-        public void setDescX(String descX)
-        {
-            this.descX = descX;
-        }
-
-        public String getPublishedAtX()
-        {
-            return publishedAtX;
-        }
-
-        public void setPublishedAtX(String publishedAtX)
-        {
-            this.publishedAtX = publishedAtX;
-        }
-
-        public String getSourceX()
-        {
-            return sourceX;
-        }
-
-        public void setSourceX(String sourceX)
-        {
-            this.sourceX = sourceX;
-        }
-
-        public String getTypeX()
-        {
-            return typeX;
-        }
-
-        public void setTypeX(String typeX)
-        {
-            this.typeX = typeX;
-        }
-
-        public String getUrlX()
-        {
-            return urlX;
-        }
-
-        public void setUrlX(String urlX)
-        {
-            this.urlX = urlX;
-        }
-
-        public boolean isUsedX()
-        {
-            return usedX;
-        }
-
-        public void setUsedX(boolean usedX)
-        {
-            this.usedX = usedX;
-        }
-
-        public String getWhoX()
-        {
-            return whoX;
-        }
-
-        public void setWhoX(String whoX)
-        {
-            this.whoX = whoX;
-        }
-
-        public List<String> getImagesX()
-        {
-            return imagesX;
-        }
-
-        public void setImagesX(List<String> imagesX)
-        {
-            this.imagesX = imagesX;
-        }
-    }
 }

@@ -3,16 +3,11 @@ package demo.yc.joviality.ui.fragment.base;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import demo.yc.joviality.ui.adapter.MainTypeFragAdapter;
 import demo.yc.joviality.ui.fragment.GanksListFragment;
 import demo.yc.joviality.ui.fragment.ImageListFragment;
@@ -33,9 +28,7 @@ public class MainTypeFragment extends BaseFragment
      * 参数传入的tag
      */
     private static final String MAIN_TYPE = "type";
-    @BindView(R.id.image_main_indicator)
-    TabLayout mIndicator;
-    Unbinder unbinder;
+
     /**
      * 记录当前的frag代表的模块 type
      */
@@ -51,13 +44,15 @@ public class MainTypeFragment extends BaseFragment
 
     private MainTypeFragAdapter adapter;
 
+    @BindView(R.id.image_main_indicator)
+    TabLayout mIndicator;
+
     @BindView(R.id.image_main_pager)
     ViewPager mPager;
 
 
     public static MainTypeFragment newInstance(String type)
     {
-
         MainTypeFragment fragment = new MainTypeFragment();
         Bundle args = new Bundle();
         args.putString(MAIN_TYPE, type);
@@ -143,20 +138,4 @@ public class MainTypeFragment extends BaseFragment
         });
     }
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView()
-    {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
 }

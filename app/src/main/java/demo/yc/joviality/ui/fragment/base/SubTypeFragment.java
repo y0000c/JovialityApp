@@ -28,7 +28,6 @@ public abstract class SubTypeFragment extends BaseFragment
     protected RecyclerView mRecyclerView;
     @BindView(R.id.image_list_refresh_layout)
     protected SwipeRefreshLayout mRefreshLayout;
-
     protected String mainType;
     protected String mSubType;
     protected FragListPresenter mPresenter;
@@ -43,7 +42,6 @@ public abstract class SubTypeFragment extends BaseFragment
     private boolean isViewInitiated;
     private boolean isVisibleToUser;
     private boolean isDataInitiated;
-
 
     @Override
     protected void initData()
