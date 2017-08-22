@@ -26,9 +26,9 @@
 
     <string-array name="part">
         <item>@string/news</item>
+        <item>@string/gank</item>
         <item>@string/image</item>
         <item>@string/video</item>
-        <item>@string/gank</item>
     </string-array>
 
     <string name="news">新闻</string>

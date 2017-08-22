@@ -19,7 +19,6 @@ import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.lib.base.ViewHolder;
 import demo.yc.lib.listener.IRecyclerItemClickListener;
 import demo.yc.lib.listener.IRecyclerLoadMoreListener;
-import demo.yc.lib.utils.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,13 +26,13 @@ import demo.yc.lib.utils.LogUtil;
 public class CollectionImageFrag extends SubTypeFragment
 {
     private ImageEntityDao dao ;
-
+    private int offsetNum = 0;
+    private boolean isFirst = true;
     public static CollectionImageFrag newInstance()
     {
         CollectionImageFrag fragment = new CollectionImageFrag();
         return fragment;
     }
-
     @Override
     protected void initEvents()
     {
@@ -56,17 +55,9 @@ public class CollectionImageFrag extends SubTypeFragment
             @Override
             public void onLoadMore(boolean isReload)
             {
-                LogUtil.d("url","load----");
-                // 已经没有新的数据了
-                if(currentPager == tempPager && !isReload)
-                    return;
-                // 否则就继续加载新的数据
-                isLoadMore = true;
-                currentPager = tempPager;
                 getData();
             }
         });
-
 
         StaggeredGridLayoutManager manager =
                 new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
@@ -81,28 +72,40 @@ public class CollectionImageFrag extends SubTypeFragment
     @Override
     protected void getData()
     {
-        onSuccess(dao.queryBuilder().limit(10).list());
+        onSuccess(dao.queryBuilder().limit(10).offset(offsetNum).list());
     }
 
     public void onSuccess(List<ImageEntity> imageList)
     {
-        if(imageList.size() >=1)
+        offsetNum+=imageList.size();
+        if(offsetNum > 0)
+        {
             mRecyclerView.setVisibility(View.VISIBLE);
-        mRefreshLayout.setRefreshing(false);
-
-        if(isLoadMore)
+            mRefreshLayout.setEnabled(false);
+        }
+        if(isFirst)
+        {
+            isFirst = false;
+            mAdapter.setNewData(imageList);
+            mRefreshLayout.post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    mRefreshLayout.setRefreshing(false);
+                }
+            });
+        }else
         {
             if(imageList.size() == 0)
                 mAdapter.showLoadEndView();
             else
-            {
                 mAdapter.setLoadMoreData(imageList);
-                tempPager++;
-            }
-        }else
-        {
-            mAdapter.setNewData(imageList);
-            mRefreshLayout.setEnabled(false);
         }
+    }
+    @Override
+    public void onRefresh()
+    {
+        getData();
     }
 }

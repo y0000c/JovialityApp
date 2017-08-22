@@ -1,11 +1,16 @@
 package demo.yc.joviality.ui.activity.base;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.File;
 
 import demo.yc.joviality.MyApp;
 import demo.yc.joviality.entity.GankEntity;
 import demo.yc.joviality.entity.ImageEntity;
+import demo.yc.joviality.entity.ShareEntity;
 import demo.yc.joviality.gen.GankEntityDao;
 import demo.yc.joviality.gen.ImageEntityDao;
 import demo.yc.jovialityyc.R;
@@ -39,7 +44,28 @@ public abstract class BaseDetailActivity extends BaseAppActivity
 
     private void share()
     {
-        LogUtil.d("menu","share----");
+        if(getShareData() != null)
+        {
+            ShareEntity item = getShareData();
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if(item.getType() == ShareEntity.TYPE_IMAGE)
+            {
+                intent.setType("image/*");
+                intent.putExtra(Intent.EXTRA_STREAM,
+                        Uri.fromFile(new File(item.getImagePath())));
+            }else if(item.getType() == ShareEntity.TYPE_URL)
+            {
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,item.getExtra()+"\r\n"
+                        +item.getUrl());
+            }else
+            {
+                return;
+            }
+            startActivity(Intent.createChooser(intent,"分享到"));
+        }
     }
 
     private void collect()
@@ -92,8 +118,7 @@ public abstract class BaseDetailActivity extends BaseAppActivity
 
     public abstract Object getDoneData();
 
-
-
+    public abstract ShareEntity getShareData();
 }
 
 

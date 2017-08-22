@@ -18,7 +18,6 @@ import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.lib.base.ViewHolder;
 import demo.yc.lib.listener.IRecyclerItemClickListener;
 import demo.yc.lib.listener.IRecyclerLoadMoreListener;
-import demo.yc.lib.utils.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +26,8 @@ public class CollectionGankFrag extends SubTypeFragment
 {
     private GankEntityDao dao;
     private int offsetNum = 0;
+    private boolean isFirst = true;
+
     public static CollectionGankFrag newInstance()
     {
         CollectionGankFrag fragment = new CollectionGankFrag();
@@ -54,14 +55,7 @@ public class CollectionGankFrag extends SubTypeFragment
             @Override
             public void onLoadMore(boolean isReload)
             {
-                LogUtil.d("url","load----");
-                // 已经没有新的数据了
-                if(currentPager == tempPager && !isReload)
-                    return;
-                // 否则就继续加载新的数据
-                isLoadMore = true;
-                currentPager = tempPager;
-                getData();
+                    getData();
             }
         });
 
@@ -83,21 +77,36 @@ public class CollectionGankFrag extends SubTypeFragment
     public void onSuccess(List<GankEntity> gankList)
     {
         offsetNum+=gankList.size();
-        if(offsetNum >0)
+        if(offsetNum > 0)
         {
             mRecyclerView.setVisibility(View.VISIBLE);
-            mRecyclerView.setEnabled(false);
-            mRefreshLayout.setRefreshing(false);
+            mRefreshLayout.setEnabled(false);
         }
-        if(isLoadMore)
+        if(isFirst)
+        {
+            isFirst = false;
+            mAdapter.setNewData(gankList);
+            mRefreshLayout.post(new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    mRefreshLayout.setRefreshing(false);
+                }
+            });
+        }else
         {
             if(gankList.size() == 0)
                 mAdapter.showLoadEndView();
             else
                 mAdapter.setLoadMoreData(gankList);
-        }else
-        {
-            mAdapter.setNewData(gankList);
         }
+
+    }
+
+    @Override
+    public void onRefresh()
+    {
+        getData();
     }
 }

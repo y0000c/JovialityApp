@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.bumptech.glide.request.target.Target;
 import butterknife.BindView;
 import butterknife.OnClick;
 import demo.yc.joviality.entity.ImageEntity;
+import demo.yc.joviality.entity.ShareEntity;
 import demo.yc.joviality.ui.activity.base.BaseDetailActivity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.utils.CommonUtil;
@@ -60,6 +62,9 @@ public class ImageDetailActivity extends BaseDetailActivity
         {
             finish();
         }
+        Log.w("collection",imageData.getThumbnailUrl());
+        Log.w("collection",imageData.getDownloadUrl());
+        Log.w("collection",imageData.getImageUrl());
     }
 
     @Override
@@ -204,6 +209,13 @@ public class ImageDetailActivity extends BaseDetailActivity
     public Object getDoneData()
     {
         return imageData;
+    }
+
+    @Override
+    public ShareEntity getShareData()
+    {
+        return new ShareEntity(ShareEntity.TYPE_URL
+                ,"图片",imageData.getImageUrl(),"");
     }
 
     private void showErrorDialog()

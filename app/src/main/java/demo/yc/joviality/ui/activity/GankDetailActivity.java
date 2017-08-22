@@ -1,5 +1,7 @@
 package demo.yc.joviality.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.ProgressBar;
 
 import butterknife.BindView;
 import demo.yc.joviality.entity.GankEntity;
+import demo.yc.joviality.entity.ShareEntity;
 import demo.yc.joviality.ui.activity.base.BaseDetailActivity;
 import demo.yc.jovialityyc.R;
 
@@ -108,13 +111,23 @@ public class GankDetailActivity extends BaseDetailActivity
 
     private void otherOpen()
     {
-
+        Intent i = new Intent();
+        i.setData(Uri.parse(gankItem.getUrlX()));
+        i.setAction(Intent.ACTION_VIEW);
+        startActivity(i);
     }
 
     @Override
     public Object getDoneData()
     {
         return gankItem;
+    }
+
+    @Override
+    public ShareEntity getShareData()
+    {
+        return new ShareEntity(ShareEntity.TYPE_URL
+                ,gankItem.getDescX(),gankItem.getUrlX(),"");
     }
 
     @Override

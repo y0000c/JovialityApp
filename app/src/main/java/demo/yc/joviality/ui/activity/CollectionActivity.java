@@ -18,7 +18,6 @@ import demo.yc.lib.utils.ResUtils;
 
 public class CollectionActivity extends BaseAppActivity
 {
-
     @BindView(R.id.image_main_indicator)
     TabLayout mIndicator;
 
@@ -26,6 +25,7 @@ public class CollectionActivity extends BaseAppActivity
     ViewPager mPager;
 
     private List<SubTypeFragment> fragList;
+
     /**
      * 子Frag对应的title
      */
@@ -37,10 +37,12 @@ public class CollectionActivity extends BaseAppActivity
     protected void getBundleExtras(Bundle extras)
     {
         fragList = new ArrayList<>();
-        fragList.add(CollectionGankFrag.newInstance());
+        fragList.add(CollectionImageFrag.newInstance());
         fragList.add(CollectionGankFrag.newInstance());
         fragList.add(CollectionImageFrag.newInstance());
-        fragList.add(CollectionImageFrag.newInstance());
+        fragList.add(CollectionGankFrag.newInstance());
+
+
         titleList = ResUtils.resToStrList(this,R.array.part);
     }
 
