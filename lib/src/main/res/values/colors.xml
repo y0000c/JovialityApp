@@ -21,6 +21,10 @@
 
     <!--黑色和透明度-->
     <color name="black">#000</color>
+    <color name="alpha_20_black">#33000000</color>
+    <color name="alpha_40_black">#66000000</color>
+    <color name="alpha_60_black">#99000000</color>
+    <color name="alpha_80_black">#CC000000</color>
 
 
 </resources>

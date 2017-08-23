@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/main_color"
+    tools:context="demo.yc.joviality.ui.activity.SearchActivity">
+
+    <View android:layout_width="match_parent"
+          android:layout_height="@dimen/fit_padding_top"
+          android:background="@color/main_color"/>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal">
+
+        <!--back-->
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/search_back_btn"
+                android:src="@drawable/back"
+                android:layout_width="18dp"
+                android:layout_height="18dp"/>
+        </LinearLayout>
+
+        <!--edittext-->
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginEnd="10dp">
+
+            <LinearLayout
+                android:id="@+id/search_layout"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <EditText
+                    android:id="@+id/search_input_text"
+                    android:maxLines="1"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="输入图片内容"
+                    android:textColor="@color/alpha_80_white"
+                    android:textColorHint="@color/alpha_40_white"/>
+                <ImageView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/search_audio_btn"
+                    android:src="@drawable/audio"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
+                <ImageView
+                    android:layout_marginStart="10dp"
+                    android:id="@+id/search_check_btn"
+                    android:src="@drawable/search"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/search_layout"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/tab_indicator"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_frag_layout">
+
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_type_layout">
+        <TextView
+            android:textColor="@color/blue_80"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="搜索指定的内容"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="图片"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="视频"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

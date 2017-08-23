@@ -41,6 +41,12 @@ public class FragListPresenterImp<T> implements
     }
 
     @Override
+    public void loadListData(String id, String name, int page,int days)
+    {
+        mModelImp.getListData(id,name,page,days);
+    }
+
+    @Override
     public void onSuccess(final List<T> data)
     {
         ((Activity)mContext).runOnUiThread(new Runnable()

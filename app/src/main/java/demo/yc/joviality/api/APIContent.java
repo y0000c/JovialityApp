@@ -11,4 +11,5 @@ public class APIContent
 {
     public static final String BAIDU_IMAGES_URLS = "http://image.baidu.com/data/imgs";
     public static final String IT_STUDY_URLS = "http://gank.io/api/data/";
+    public static final String NEWS_URLS = "https://route.showapi.com/109-35?";
 }

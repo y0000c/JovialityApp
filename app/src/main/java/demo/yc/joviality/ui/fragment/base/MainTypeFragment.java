@@ -77,8 +77,12 @@ public class MainTypeFragment extends BaseFragment
         if (currentType.equals(ResUtils.resToStr(mContext,R.string.news)))
         {
             titleList = ResUtils.resToStrList(mContext, R.array.news);
-            for (String item : titleList)
-                fragList.add(NewsListFragment.newInstance(item));
+            List<String> titleIdList = ResUtils.resToStrList(mContext,R.array.news_id);
+            for (int i=0;i<titleIdList.size();i++)
+            {
+                fragList.add(NewsListFragment
+                        .newInstance(titleIdList.get(i), titleList.get(i)));
+            }
         } else if (currentType.equals(ResUtils.resToStr(mContext,R.string.image)))
         {
             titleList = ResUtils.resToStrList(mContext, R.array.images);

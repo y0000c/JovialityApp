@@ -16,11 +16,12 @@ import android.widget.ProgressBar;
 
 import butterknife.BindView;
 import demo.yc.joviality.entity.GankEntity;
+import demo.yc.joviality.entity.NewsEntity;
 import demo.yc.joviality.entity.ShareEntity;
 import demo.yc.joviality.ui.activity.base.BaseDetailActivity;
 import demo.yc.jovialityyc.R;
 
-public class GankDetailActivity extends BaseDetailActivity
+public class UrlDetailActivity extends BaseDetailActivity
 {
     @BindView(R.id.gank_detail_layout)
     ViewGroup layout;
@@ -29,23 +30,44 @@ public class GankDetailActivity extends BaseDetailActivity
     @BindView(R.id.gank_detail_web)
     WebView mWebView;
 
-    private GankEntity gankItem;
+    private Object item;
 
-    public static final String GANK_TAG = "gank_detail";
+    public static final String URL_TAG = "url_detail";
     private static final int OPEN_OTHER = 0x2222;
 
+    private boolean isGank = false;
+    private GankEntity gankItem;
+    private NewsEntity newsItem;
+
+    private String url;
+    private String title;
+    private String desc;
     @Override
     protected void getBundleExtras(Bundle extras)
     {
-        gankItem = (GankEntity) extras.getSerializable(GANK_TAG);
-        if (gankItem == null)
+        item = extras.getSerializable(URL_TAG);
+        if (item == null)
             finish();
+        if(item instanceof GankEntity)
+        {
+            gankItem = (GankEntity) item;
+            title = gankItem.getDescX();
+            desc = gankItem.getDescX();
+            url = gankItem.getUrlX();
+        }else
+        {
+            newsItem = (NewsEntity) item;
+            title = newsItem.getTitle();
+            desc = newsItem.getTitle();
+            url = newsItem.getLink();
+
+        }
     }
 
     @Override
     protected int getLayoutId()
     {
-        return R.layout.activity_gank_detail;
+        return R.layout.activity_url_detail;
     }
 
     @Override
@@ -74,7 +96,7 @@ public class GankDetailActivity extends BaseDetailActivity
                 if(newProgress >= 100)
                 {
                     mProgress.setVisibility(View.GONE);
-                    setTitle(gankItem.getDescX());
+                    setTitle(title);
                 }
             }
         });
@@ -87,7 +109,9 @@ public class GankDetailActivity extends BaseDetailActivity
                 return true;
             }
         });
-        mWebView.loadUrl(gankItem.getUrlX());
+
+        mWebView.loadUrl(url);
+
     }
 
 
@@ -112,7 +136,7 @@ public class GankDetailActivity extends BaseDetailActivity
     private void otherOpen()
     {
         Intent i = new Intent();
-        i.setData(Uri.parse(gankItem.getUrlX()));
+        i.setData(Uri.parse(url));
         i.setAction(Intent.ACTION_VIEW);
         startActivity(i);
     }
@@ -120,14 +144,14 @@ public class GankDetailActivity extends BaseDetailActivity
     @Override
     public Object getDoneData()
     {
-        return gankItem;
+        return item;
     }
 
     @Override
     public ShareEntity getShareData()
     {
         return new ShareEntity(ShareEntity.TYPE_URL
-                ,gankItem.getDescX(),gankItem.getUrlX(),"");
+                ,desc,url,"");
     }
 
     @Override

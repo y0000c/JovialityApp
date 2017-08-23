@@ -10,9 +10,11 @@ import java.io.File;
 import demo.yc.joviality.MyApp;
 import demo.yc.joviality.entity.GankEntity;
 import demo.yc.joviality.entity.ImageEntity;
+import demo.yc.joviality.entity.NewsEntity;
 import demo.yc.joviality.entity.ShareEntity;
 import demo.yc.joviality.gen.GankEntityDao;
 import demo.yc.joviality.gen.ImageEntityDao;
+import demo.yc.joviality.gen.NewsEntityDao;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.utils.LogUtil;
 import demo.yc.lib.utils.ToastUtil;
@@ -105,6 +107,22 @@ public abstract class BaseDetailActivity extends BaseAppActivity
             {
                 if (dao.insert(item) > 0)
                     ToastUtil.getBar(getWindow().getDecorView(), "收藏成功").show();
+                else
+                    ToastUtil.getBar(getWindow().getDecorView(), "收藏失败").show();
+            }
+        }else  if(obj instanceof NewsEntity)
+        {
+            NewsEntity item = (NewsEntity) obj;
+            NewsEntityDao dao = MyApp.getDaoSession().getNewsEntityDao();
+            long count = dao.queryBuilder()
+                    .where(NewsEntityDao.Properties.Id.eq(item.getId()))
+                    .count();
+            if(count > 0)
+                ToastUtil.getBar(getWindow().getDecorView(),"已经收藏").show();
+            else
+            {
+                if (dao.insert(item) > 0)
+                    ToastUtil.getBar(getWindow().getCurrentFocus(), "收藏成功").show();
                 else
                     ToastUtil.getBar(getWindow().getDecorView(), "收藏失败").show();
             }

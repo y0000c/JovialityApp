@@ -30,7 +30,7 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
 {
     public static ImageListFragment newInstance(String type)
     {
-        LogUtil.d("fragment",TAG+"--"+type);
+        LogUtil.d("fragment",TAG+"--"+type+"");
         ImageListFragment fragment = new ImageListFragment();
         Bundle args = new Bundle();
         args.putString(SUB_TYPE,type);
@@ -42,6 +42,7 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
     protected void initEvents()
     {
         super.initEvents();
+        LogUtil.d("fragment",TAG+"--initevent");
       //  mainType = ResUtils.resToStr(mContext, R.string.image);
         mAdapter = new ImageListAdapter(getContext(),new ArrayList<ImageEntity>(),true);
         mAdapter.showLoadingView();
@@ -83,6 +84,7 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
     @Override
     protected void getData()
     {
+        LogUtil.d("fragment",TAG+"----getData");
         mPresenter.loadListData(R.string.image,mSubType,currentPager);
     }
 
@@ -90,7 +92,6 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
     public void onError(String msg)
     {
         Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
-
         if(isLoadMore)
             mAdapter.showLoadFiledView();
         else
@@ -100,12 +101,13 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
     @Override
     public void onSuccess(List<ImageEntity> imageList)
     {
-        if(imageList.size() >=1)
+        LogUtil.d("fragment",TAG+"----onsuccess--"+imageList.size());
+        if(imageList.size() >1)
             mRecyclerView.setVisibility(View.VISIBLE);
         mRefreshLayout.setRefreshing(false);
         if(isLoadMore)
         {
-            if(imageList.size() == 0)
+            if(imageList.size() <= 1)
                 mAdapter.showLoadEndView();
             else
             {

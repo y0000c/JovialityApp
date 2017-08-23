@@ -31,13 +31,26 @@
         <item>@string/video</item>
     </string-array>
 
+    <string name="setting">设置</string>
+
     <string name="news">新闻</string>
     <string-array name="news">
-        <item>11</item>
-        <item>22</item>
-        <item>33</item>
-        <item>44</item>
-        <item>55</item>
+        <item>社会</item>
+        <item>互联网</item>
+        <item>体育</item>
+        <item>娱乐</item>
+        <item>科技</item>
+        <item>军事</item>
+        <item>国际</item>
+    </string-array>
+    <string-array name="news_id">
+        <item>5572a109b3cdc86cf39001da</item>
+        <item>5572a108b3cdc86cf39001d1</item>
+        <item>5572a108b3cdc86cf39001d4</item>
+        <item>5572a108b3cdc86cf39001d5</item>
+        <item>5572a108b3cdc86cf39001d9</item>
+        <item>5572a108b3cdc86cf39001cf</item>
+        <item>5572a108b3cdc86cf39001ce</item>
     </string-array>
 
     <string name="gank">干货</string>

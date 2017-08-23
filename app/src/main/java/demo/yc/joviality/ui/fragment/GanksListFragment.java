@@ -14,7 +14,7 @@ import demo.yc.joviality.entity.GankEntity;
 import demo.yc.joviality.entity.ResponseGankEntity;
 import demo.yc.joviality.mvp.mvppresenter.imp.FragListPresenterImp;
 import demo.yc.joviality.mvp.mvpview.FragListView;
-import demo.yc.joviality.ui.activity.GankDetailActivity;
+import demo.yc.joviality.ui.activity.UrlDetailActivity;
 import demo.yc.joviality.ui.adapter.GankListAdapter;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
@@ -26,7 +26,7 @@ import demo.yc.lib.utils.LogUtil;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GanksListFragment extends SubTypeFragment implements FragListView<ResponseGankEntity>
+public class GanksListFragment extends SubTypeFragment implements FragListView<GankEntity>
 {
 
     public static GanksListFragment newInstance(String type)
@@ -52,8 +52,8 @@ public class GanksListFragment extends SubTypeFragment implements FragListView<R
             public void onItemClick(ViewHolder holder, GankEntity data, int position)
             {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(GankDetailActivity.GANK_TAG,data);
-                mContext.jumpToActivity(GankDetailActivity.class,bundle,false);
+                bundle.putSerializable(UrlDetailActivity.URL_TAG,data);
+                mContext.jumpToActivity(UrlDetailActivity.class,bundle,false);
             }
         });
         mAdapter.setOnLoadMoreListener(new IRecyclerLoadMoreListener()
@@ -98,7 +98,7 @@ public class GanksListFragment extends SubTypeFragment implements FragListView<R
     }
 
     @Override
-    public void onSuccess(List<ResponseGankEntity> gankList)
+    public void onSuccess(List<GankEntity> gankList)
     {
         if(gankList.size() >=1)
             mRecyclerView.setVisibility(View.VISIBLE);

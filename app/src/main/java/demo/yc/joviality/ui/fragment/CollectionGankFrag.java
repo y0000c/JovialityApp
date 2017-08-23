@@ -12,7 +12,7 @@ import java.util.List;
 import demo.yc.joviality.MyApp;
 import demo.yc.joviality.entity.GankEntity;
 import demo.yc.joviality.gen.GankEntityDao;
-import demo.yc.joviality.ui.activity.GankDetailActivity;
+import demo.yc.joviality.ui.activity.UrlDetailActivity;
 import demo.yc.joviality.ui.adapter.GankListAdapter;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.lib.base.ViewHolder;
@@ -46,8 +46,8 @@ public class CollectionGankFrag extends SubTypeFragment
             public void onItemClick(ViewHolder holder, GankEntity data, int position)
             {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(GankDetailActivity.GANK_TAG,data);
-                mContext.jumpToActivity(GankDetailActivity.class,bundle,false);
+                bundle.putSerializable(UrlDetailActivity.URL_TAG,data);
+                mContext.jumpToActivity(UrlDetailActivity.class,bundle,false);
             }
         });
         mAdapter.setOnLoadMoreListener(new IRecyclerLoadMoreListener()

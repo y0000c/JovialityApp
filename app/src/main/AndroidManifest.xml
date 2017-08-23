@@ -33,7 +33,11 @@
             android:name="demo.yc.joviality.ui.activity.ImageDetailActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name="demo.yc.joviality.ui.activity.GankDetailActivity">
+        <activity android:name="demo.yc.joviality.ui.activity.UrlDetailActivity">
+        </activity>
+        <activity android:name="demo.yc.joviality.ui.activity.SettingActivity">
+        </activity>
+        <activity android:name="demo.yc.joviality.ui.activity.SearchActivity">
         </activity>
     </application>
 

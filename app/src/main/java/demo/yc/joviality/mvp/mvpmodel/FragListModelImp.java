@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import demo.yc.joviality.entity.ResponseGankEntity;
 import demo.yc.joviality.entity.ResponseImageEntity;
+import demo.yc.joviality.entity.ResponseNewsEntity;
 import demo.yc.joviality.http.GsonUtils;
 import demo.yc.joviality.http.URLHelper;
 import demo.yc.joviality.interfaces.IListDataCallback;
@@ -75,6 +76,38 @@ public class FragListModelImp<T>
                             break;
                     }
 
+                }else
+                {
+                    callback.onError("加载失败");
+                }
+            }
+        });
+    }
+
+    public void getListData(final String id,final String name,int page,int days)
+    {
+        String url = URLHelper.getNewsListUrl(id,name,page,days);
+        HttpHelper.requestGet(url, new Callback()
+        {
+            @Override
+            public void onFailure(Call call, IOException e)
+            {
+                callback.onError("请求失败");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException
+            {
+                String json = response.body().string();
+                LogUtil.d("result", json);
+                if (response.isSuccessful())
+                {
+                    ResponseNewsEntity news = GsonUtils.parseNewsEntity(json);
+                    if(news == null || news.getResCode() != 0)
+                    {
+                        callback.onError("加载失败");
+                    }else
+                        callback.onSuccess(news.getBody().getPagebean().getContentlist());
                 }else
                 {
                     callback.onError("加载失败");

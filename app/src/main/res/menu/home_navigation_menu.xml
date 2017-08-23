@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+    android:id="@+id/function">
         <item
             android:checked="true"
             android:id="@+id/home_news_item"
             android:title="@string/news"
-            android:icon="@mipmap/ic_launcher"/>
+            android:icon="@drawable/news"/>
         <item
-            android:checked="true"
             android:id="@+id/home_gank_item"
             android:title="@string/gank"
-            android:icon="@mipmap/ic_launcher"/>
+            android:icon="@drawable/gank"/>
         <item
             android:id="@+id/home_images_item"
             android:title="@string/image"
-            android:icon="@mipmap/ic_launcher"/>
+            android:icon="@drawable/image"/>
         <item
             android:id="@+id/home_video_item"
             android:title="@string/video"
-            android:icon="@mipmap/ic_launcher"/>
+            android:icon="@drawable/videos"/>
+    </group>
+    <group android:checkableBehavior="none" android:id="@+id/other">
+        <item
+            android:checked="false"
+            android:id="@+id/home_setting_item"
+            android:title="@string/setting"
+            android:icon="@drawable/setting"/>
     </group>
 </menu>

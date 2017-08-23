@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import demo.yc.joviality.entity.ResponseGankEntity;
 import demo.yc.joviality.entity.ResponseImageEntity;
+import demo.yc.joviality.entity.ResponseNewsEntity;
 
 /**
  * @author: YC
@@ -29,6 +30,7 @@ public class GsonUtils
         }
         return gank;
     }
+
     public static ResponseImageEntity parseImageEntity(String json)
     {
         ResponseImageEntity image = null;
@@ -41,6 +43,20 @@ public class GsonUtils
         }
         return image;
     }
+
+    public static ResponseNewsEntity parseNewsEntity(String json)
+    {
+        ResponseNewsEntity news = null;
+        try
+        {
+            news = gson.fromJson(json,ResponseNewsEntity.class);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return news;
+    }
+
 
 
 }

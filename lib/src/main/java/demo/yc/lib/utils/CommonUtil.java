@@ -40,6 +40,21 @@ public class CommonUtil
         return calendar.get(Calendar.DAY_OF_WEEK)-1;
     }
 
+    public static String getDayTime(int num)
+    {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH,-num);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(calendar.getTimeInMillis());
+    }
+
+    public static String getTodayTime()
+    {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(date);
+    }
+
     public static String getTodayString()
     {
         Date date = new Date();

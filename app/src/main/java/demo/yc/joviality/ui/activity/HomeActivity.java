@@ -110,8 +110,14 @@ public class HomeActivity extends BaseAppActivity implements HomeView
         mHomeNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
         {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            public boolean onNavigationItemSelected(@NonNull final MenuItem item)
             {
+                if(item.getItemId() == R.id.home_setting_item)
+                {
+                    jumpToActivity(SettingActivity.class,null,false);
+                    mHomeDrawerLayout.closeDrawer(GravityCompat.START);
+                    return true;
+                }
                 switch (item.getItemId())
                 {
                     case R.id.home_news_item:
@@ -223,6 +229,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                 LogUtil.d("menu","show download");
                 break;
             case R.id.tool_menu_search:
+                jumpToActivity(SearchActivity.class,null,false);
                 LogUtil.d("menu","show search");
                 break;
         }

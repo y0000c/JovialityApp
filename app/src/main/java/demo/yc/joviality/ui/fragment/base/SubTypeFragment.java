@@ -97,7 +97,7 @@ public abstract class SubTypeFragment extends BaseFragment
      */
     protected void initGetData()
     {
-        //LogUtil.d("visible",isVisibleToUser+"--"+isViewInitiated+"--"+isDataInitiated);
+        LogUtil.d("fragment",TAG+"--"+isVisibleToUser+"--"+isViewInitiated+"--"+isDataInitiated);
         if(isViewInitiated && isVisibleToUser && !isDataInitiated)
         {
             getData();
