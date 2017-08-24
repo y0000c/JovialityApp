@@ -3,11 +3,10 @@ package demo.yc.joviality.ui.adapter;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 import demo.yc.joviality.MyApp;
+import demo.yc.joviality.conf.GlideApp;
 import demo.yc.joviality.entity.GankEntity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
@@ -57,7 +56,7 @@ public class GankListAdapter extends BaseAdapter<GankEntity>
        ImageView imageView = holder.getItemView(R.id.gank_item_icon);
        List<String> list =  resultsBean.getImagesX();
         if(list != null && list.size() >=1)
-            Glide.with(MyApp.getContext()).asBitmap().load(list.get(0)+"?imageView2/0/w/60").into(imageView);
+            GlideApp.with(MyApp.getContext()).asBitmap().load(list.get(0)+"?imageView2/0/w/60").into(imageView);
         else
         {
             String url = resultsBean.getUrlX().toLowerCase();
@@ -72,7 +71,7 @@ public class GankListAdapter extends BaseAdapter<GankEntity>
                 iconID = R.drawable.jianshu;
             else
                 iconID = R.drawable.web;
-            Glide.with(MyApp.getContext()).load(iconID).into(imageView);
+            GlideApp.with(MyApp.getContext()).load(iconID).into(imageView);
         }
     }
 

@@ -3,7 +3,7 @@ package demo.yc.joviality.http;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import demo.yc.joviality.api.APIContent;
+import demo.yc.joviality.conf.CommonContent;
 import demo.yc.lib.utils.LogUtil;
 
 /**
@@ -25,7 +25,7 @@ public class URLHelper
      */
     public static String getImagesListUrl(String category, int pageCount) {
         StringBuffer sb = new StringBuffer();
-        sb.append(APIContent.BAIDU_IMAGES_URLS);
+        sb.append(CommonContent.BAIDU_IMAGES_URLS);
         sb.append("?col=");
         try {
             sb.append(URLEncoder.encode(category, "UTF-8"));
@@ -58,7 +58,7 @@ public class URLHelper
     public static String getStudyListUrl(String category,int pageCount)
     {
         StringBuffer sb =  new StringBuffer();
-        sb.append(APIContent.IT_STUDY_URLS)
+        sb.append(CommonContent.IT_STUDY_URLS)
           .append(category)
           .append("/")
           .append(PAGE_LIMIT)
@@ -91,7 +91,7 @@ public class URLHelper
    // return "http://image.baidu.com/i?tn=baiduimagejson&word=周杰伦&pn=10&rn=10&ie=utf8";
 
         StringBuffer sb = new StringBuffer();
-        sb.append(APIContent.BAIDU_IMAGES_URLS);
+        sb.append(CommonContent.BAIDU_IMAGES_URLS);
         sb.append("?col=");
         try {
             sb.append(URLEncoder.encode("所有", "UTF-8"));
@@ -119,7 +119,7 @@ public class URLHelper
     {
     //&showapi_appid=19409&showapi_test_draft=false&showapi_timestamp=20170823171005&title=&showapi_sign=b3ee62b8c6014c678e978b12efffcb9a
         StringBuffer sb = new StringBuffer();
-        sb.append(APIContent.NEWS_URLS);
+        sb.append(CommonContent.NEWS_URLS);
         sb.append("channelId="+id);
         try {
             sb.append("&channelName"+URLEncoder.encode(name, "UTF-8"));

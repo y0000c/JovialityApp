@@ -12,6 +12,7 @@ import demo.yc.joviality.ui.activity.base.BaseAppActivity;
 import demo.yc.joviality.ui.adapter.MainTypeFragAdapter;
 import demo.yc.joviality.ui.fragment.CollectionGankFrag;
 import demo.yc.joviality.ui.fragment.CollectionImageFrag;
+import demo.yc.joviality.ui.fragment.CollectionNewsFrag;
 import demo.yc.joviality.ui.fragment.base.SubTypeFragment;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.utils.ResUtils;
@@ -37,7 +38,7 @@ public class CollectionActivity extends BaseAppActivity
     protected void getBundleExtras(Bundle extras)
     {
         fragList = new ArrayList<>();
-        fragList.add(CollectionImageFrag.newInstance());
+        fragList.add(CollectionNewsFrag.newInstance());
         fragList.add(CollectionGankFrag.newInstance());
         fragList.add(CollectionImageFrag.newInstance());
         fragList.add(CollectionGankFrag.newInstance());

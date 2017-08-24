@@ -1,17 +1,22 @@
 package demo.yc.joviality.ui.activity;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import demo.yc.joviality.ui.activity.base.BaseAppActivity;
 import demo.yc.joviality.mvp.mvppresenter.base.BasePresenter;
 import demo.yc.joviality.mvp.mvppresenter.imp.SplashPresenterImp;
 import demo.yc.joviality.mvp.mvpview.SplashView;
+import demo.yc.joviality.ui.activity.base.BaseAppActivity;
 import demo.yc.jovialityyc.R;
+
+import static demo.yc.joviality.conf.CommonContent.PERMISSION_STORAGE;
+import static demo.yc.joviality.conf.CommonContent.STORAGE_CODE;
 
 public class SplashActivity extends BaseAppActivity implements SplashView
 {
@@ -49,8 +54,7 @@ public class SplashActivity extends BaseAppActivity implements SplashView
     @Override
     protected void initEvents()
     {
-        mMainPresenter = new SplashPresenterImp(this, this);
-        mMainPresenter.initialized();
+       doSdcardPermission();
     }
 
 
@@ -97,5 +101,43 @@ public class SplashActivity extends BaseAppActivity implements SplashView
     }
 
 
+    /**
+     * 判断有没有权限
+     */
+    private void doSdcardPermission()
+    {
+        if(hasPermission(PERMISSION_STORAGE))
+            doPermissionSuccess();
+        else
+            requestPermission(STORAGE_CODE,PERMISSION_STORAGE);
+    }
 
+    /**
+     * 权限申请成功
+     */
+    private void doPermissionSuccess()
+    {
+        mMainPresenter = new SplashPresenterImp(this, this);
+        mMainPresenter.initialized();
+    }
+
+    /**
+     * 权限申请失败
+     */
+    private void doPermissionError()
+    {
+        finish();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        if(requestCode == STORAGE_CODE)
+        {
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                doPermissionSuccess();
+            else
+                openPermission("为了更好的使用，请开启手机存储访问权限",true);
+        }
+    }
 }

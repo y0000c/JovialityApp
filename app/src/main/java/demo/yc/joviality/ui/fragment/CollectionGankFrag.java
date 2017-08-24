@@ -77,6 +77,7 @@ public class CollectionGankFrag extends SubTypeFragment
     public void onSuccess(List<GankEntity> gankList)
     {
         offsetNum+=gankList.size();
+        mRefreshLayout.setRefreshing(false);
         if(offsetNum > 0)
         {
             mRecyclerView.setVisibility(View.VISIBLE);

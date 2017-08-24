@@ -2,10 +2,9 @@ package demo.yc.joviality.ui.adapter;
 
 import android.content.Context;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
+import demo.yc.joviality.conf.GlideApp;
 import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
@@ -33,7 +32,7 @@ public class ImageListAdapter extends BaseAdapter<ImageEntity>
     {
         ScaleImageView imageView = holder.getItemView(R.id.recycler_image_item);
         imageView.setInitSize(imageEntity.getThumbnailWidth(),imageEntity.getImageHeight());
-        Glide.with(mContext).load(imageEntity.getThumbnailUrl()).into(imageView);
+        GlideApp.with(mContext).load(imageEntity.getThumbnailUrl()).into(imageView);
     }
 
     @Override

@@ -26,7 +26,7 @@ public class NewsListFragment extends SubTypeFragment implements FragListView<Ne
     private static final String SUB_TYPE_ID = "typeId";
     public  String mSubId;
     private int dayCount = 0;
-    private boolean isEnd = false;
+    //private boolean isEnd = false;
     public static NewsListFragment newInstance(String id,String type)
     {
         NewsListFragment fragment = new NewsListFragment();
@@ -122,7 +122,7 @@ public class NewsListFragment extends SubTypeFragment implements FragListView<Ne
             }
             else
             {
-                isEnd = false;
+                //isEnd = false;
                 mAdapter.setLoadMoreData(newsList);
                 tempPager++;
             }

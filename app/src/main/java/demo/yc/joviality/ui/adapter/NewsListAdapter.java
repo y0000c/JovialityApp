@@ -5,13 +5,13 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
 import demo.yc.joviality.MyApp;
+import demo.yc.joviality.conf.GlideApp;
 import demo.yc.joviality.entity.NewsEntity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
@@ -39,7 +39,8 @@ public class NewsListAdapter extends BaseAdapter<NewsEntity>
         holder.setText(R.id.news_layout_time,resultsBean.getPubDate().substring(0,10));
         holder.setText(R.id.news_layout_source,resultsBean.getSource());
 
-        if(!resultsBean.isHavePic())
+        if(resultsBean.getImageurls() == null
+                || resultsBean.getImageurls().size() == 0)
         {
             holder.getItemView(R.id.news_layout_1).setVisibility(View.GONE);
             holder.getItemView(R.id.news_layout_3).setVisibility(View.GONE);
@@ -54,20 +55,24 @@ public class NewsListAdapter extends BaseAdapter<NewsEntity>
                 holder.getItemView(R.id.news_layout_3).setVisibility(View.VISIBLE);
                 holder.getItemView(R.id.news_layout_0_title).setVisibility(View.GONE);
                 holder.setText(R.id.layout_3_title,resultsBean.getTitle());
-                Glide.with(MyApp.getContext())
+                GlideApp.with(MyApp.getContext())
                         .applyDefaultRequestOptions(new RequestOptions()
-                                .priority(Priority.LOW).placeholder(Color.GRAY))
+                                .priority(Priority.LOW).placeholder(R.drawable.loading))
+                        .asBitmap()
                         .load(resultsBean.getImageurls().get(0).getUrl())
                         .into((ImageView) holder.getItemView(R.id.layout_3_image1));
-                Glide.with(MyApp.getContext())
+                GlideApp.with(MyApp.getContext())
                         .applyDefaultRequestOptions(new RequestOptions()
                                 .priority(Priority.LOW).placeholder(Color.GRAY))
+                        .asBitmap()
                         .load(resultsBean.getImageurls().get(1).getUrl())
                         .into((ImageView) holder.getItemView(R.id.layout_3_image2));
-                Glide.with(MyApp.getContext())
+                GlideApp.with(MyApp.getContext())
                         .applyDefaultRequestOptions(new RequestOptions()
                                 .priority(Priority.LOW).placeholder(Color.GRAY))
+                        .asBitmap()
                         .load(resultsBean.getImageurls().get(2).getUrl())
+
                         .into((ImageView) holder.getItemView(R.id.layout_3_image3));
             }else
             {
@@ -75,9 +80,10 @@ public class NewsListAdapter extends BaseAdapter<NewsEntity>
                 holder.getItemView(R.id.news_layout_3).setVisibility(View.GONE);
                 holder.getItemView(R.id.news_layout_0_title).setVisibility(View.GONE);
                 holder.setText(R.id.layout_1_title,resultsBean.getTitle());
-                Glide.with(MyApp.getContext())
+                GlideApp.with(MyApp.getContext())
                         .applyDefaultRequestOptions(new RequestOptions()
                                 .priority(Priority.LOW).placeholder(Color.GRAY))
+                        .asBitmap()
                         .load(resultsBean.getImageurls().get(0).getUrl())
                         .into((ImageView) holder.getItemView(R.id.layout_1_image));
             }
