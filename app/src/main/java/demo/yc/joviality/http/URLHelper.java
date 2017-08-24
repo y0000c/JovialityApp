@@ -129,9 +129,9 @@ public class URLHelper
         sb.append("&maxResult="+PAGE_LIMIT);
         sb.append("&needAllList=0&needContent=0&needHtml=0");
         sb.append("&page="+pageCount);
-        sb.append("&showapi_appid=19409");
+        sb.append("&showapi_appid="+"个人账号");
        // sb.append("&showapi_timestamp="+ CommonUtil.getDayTime(days));
-        sb.append("&showapi_sign="+"292936aa62644f0f83b76a33959e1e62");
+        sb.append("&showapi_sign="+"个人密码（易源接口）");
 
         LogUtil.d("url",name+"--"+pageCount);
         LogUtil.d("url",sb.toString());
