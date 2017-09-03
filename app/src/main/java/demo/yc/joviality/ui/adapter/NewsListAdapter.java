@@ -39,8 +39,10 @@ public class NewsListAdapter extends BaseAdapter<NewsEntity>
         holder.setText(R.id.news_layout_time,resultsBean.getPubDate().substring(0,10));
         holder.setText(R.id.news_layout_source,resultsBean.getSource());
 
-        if(resultsBean.getImageurls() == null
-                || resultsBean.getImageurls().size() == 0)
+        if(!resultsBean.isHavePic()
+                ||resultsBean.getImageurls() == null
+                || resultsBean.getImageurls().size() == 0
+                || resultsBean.getImageurls().get(0) == null)
         {
             holder.getItemView(R.id.news_layout_1).setVisibility(View.GONE);
             holder.getItemView(R.id.news_layout_3).setVisibility(View.GONE);

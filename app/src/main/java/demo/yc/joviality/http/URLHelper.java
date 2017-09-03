@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import demo.yc.joviality.conf.CommonContent;
+import demo.yc.joviality.conf.SafeUtil;
 import demo.yc.lib.utils.LogUtil;
 
 /**
@@ -117,7 +118,6 @@ public class URLHelper
 
     public static String getNewsListUrl(String id,String name,int pageCount,int days)
     {
-    //&showapi_appid=19409&showapi_test_draft=false&showapi_timestamp=20170823171005&title=&showapi_sign=b3ee62b8c6014c678e978b12efffcb9a
         StringBuffer sb = new StringBuffer();
         sb.append(CommonContent.NEWS_URLS);
         sb.append("channelId="+id);
@@ -131,7 +131,7 @@ public class URLHelper
         sb.append("&page="+pageCount);
         sb.append("&showapi_appid=19409");
        // sb.append("&showapi_timestamp="+ CommonUtil.getDayTime(days));
-        sb.append("&showapi_sign="+"292936aa62644f0f83b76a33959e1e62");
+        sb.append("&showapi_sign="+ SafeUtil.getInstance().getPassword());
 
         LogUtil.d("url",name+"--"+pageCount);
         LogUtil.d("url",sb.toString());
