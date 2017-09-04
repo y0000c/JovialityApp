@@ -123,7 +123,10 @@ public abstract class BaseSkinActivity extends AppCompatActivity implements ISki
 
         //判断当前是否需要马上换肤
         if(SkinManager.getInstance().isNeedLoadPlugin())
+        {
             SkinManager.getInstance().changeItemSkin(this);
+            this.updateSKin();
+        }
 
     }
 

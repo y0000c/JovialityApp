@@ -24,6 +24,7 @@ import demo.yc.joviality.mvp.mvpview.HomeView;
 import demo.yc.joviality.ui.activity.base.BaseAppActivity;
 import demo.yc.joviality.ui.fragment.base.MainTypeFragment;
 import demo.yc.jovialityyc.R;
+import demo.yc.lib.skin.SkinManager;
 import demo.yc.lib.utils.ActivityUtils;
 import demo.yc.lib.utils.LogUtil;
 import demo.yc.lib.utils.ResUtils;
@@ -263,5 +264,16 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                 }
             },2000);
         }
+    }
+
+    @Override
+    public void updateSKin()
+    {
+        if(mHomeNavigationView != null)
+        {
+            mHomeNavigationView.setItemIconTintList(SkinManager.getInstance().getColorByPlugin("skin_text"));
+            mHomeNavigationView.setItemTextColor(SkinManager.getInstance().getColorByPlugin("skin_text"));
+        }
+
     }
 }
