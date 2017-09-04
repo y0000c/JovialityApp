@@ -22,14 +22,36 @@
     </LinearLayout>
 
     <!--drawerLayout 左滑菜单布局-->
-    <android.support.design.widget.NavigationView
-        android:layout_gravity="start"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/home_navigation_view"
-        yc:headerLayout="@layout/home_navigation_header_layout"
-        yc:menu="@menu/home_navigation_menu">
-    </android.support.design.widget.NavigationView>
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <ImageView
+            android:background="@drawable/morning"
+            android:scaleType="fitXY"
+            android:id="@+id/home_navigation_Image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+        <ListView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:entries="@array/images"/>
+
+        <android.support.design.widget.NavigationView
+            android:visibility="gone"
+            android:layout_gravity="start"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/home_navigation_view"
+            yc:headerLayout="@layout/home_navigation_header_layout"
+            yc:menu="@menu/home_navigation_menu">
+        </android.support.design.widget.NavigationView>
+    </LinearLayout>
+
 
 
 </android.support.v4.widget.DrawerLayout>

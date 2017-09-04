@@ -208,7 +208,6 @@ public class HomeActivity extends BaseAppActivity implements HomeView
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

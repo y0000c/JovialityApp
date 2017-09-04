@@ -11,4 +11,10 @@
     <include
         layout="@layout/common_tool_bar"/>
 
+    <Button
+        android:text="改变主题"
+        android:id="@+id/setting_change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

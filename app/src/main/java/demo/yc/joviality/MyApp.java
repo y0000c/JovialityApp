@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import demo.yc.joviality.gen.DaoMaster;
 import demo.yc.joviality.gen.DaoSession;
+import demo.yc.lib.skin.SkinManager;
 
 /**
  * @author: YC
@@ -27,7 +28,7 @@ public class MyApp extends Application
     {
         super.onCreate();
         mContext = getApplicationContext();
-
+        SkinManager.getInstance().init(this);
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"my_db",null);
         db = helper.getWritableDatabase();
         master = new DaoMaster(db);

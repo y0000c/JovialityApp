@@ -18,8 +18,6 @@ import demo.yc.lib.utils.CommonUtil;
 public class SearchActivity extends BaseAppActivity
 {
 
-    @BindView(R.id.search_back_btn)
-    ImageView mBackBtn;
     @BindView(R.id.search_input_text)
     EditText mInputText;
     @BindView(R.id.search_audio_btn)
@@ -52,8 +50,8 @@ public class SearchActivity extends BaseAppActivity
         fm = getSupportFragmentManager();
     }
 
-    @OnClick(R.id.search_back_btn)
-    public void onMBackBtnClicked()
+    @OnClick(R.id.search_back_layout)
+    public void onBackBtnClicked()
     {
         lastFrag = null;
         finish();

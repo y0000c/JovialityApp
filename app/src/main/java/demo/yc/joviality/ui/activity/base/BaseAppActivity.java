@@ -17,9 +17,7 @@ import demo.yc.lib.utils.LogUtil;
 
 public abstract class BaseAppActivity extends BaseActivity
 {
-
     protected Toolbar mToolbar;
-
 
     @Override
     public void setContentView(int layoutId)
@@ -46,7 +44,6 @@ public abstract class BaseAppActivity extends BaseActivity
     {
         ActivityCompat.requestPermissions(this,ps,code);
     }
-
 
     // 跳转到设置界面
     protected void openPermission(String msg,final boolean isFinish)

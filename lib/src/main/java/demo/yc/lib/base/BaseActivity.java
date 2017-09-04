@@ -1,12 +1,9 @@
 package demo.yc.lib.base;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 
 import butterknife.ButterKnife;
@@ -20,7 +17,7 @@ import demo.yc.lib.utils.LogUtil;
  * 最外层的Activity基类，用来封装一些与业务逻辑无关的代码
  * 将onCreate的生命周期细分为几个部分，便于处理和阅读
  */
-public abstract class BaseActivity extends AppCompatActivity
+public abstract class BaseActivity extends BaseSkinActivity
 {
 
     /**
@@ -39,10 +36,9 @@ public abstract class BaseActivity extends AppCompatActivity
 
     // *******************划分生命周期阶段**************
     @Override
-    protected void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
 
         TAG = this.getClass().getSimpleName();
         LogUtil.d(TAG,"onCreate");
@@ -72,13 +68,14 @@ public abstract class BaseActivity extends AppCompatActivity
      * 4.4及以上透明状态栏
      */
     private void initWindow(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-        {//5.0 全透明状态栏
-            View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    |View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+//        {//5.0 全透明状态栏
+//            View decorView = getWindow().getDecorView();
+//            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    |View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }else
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
         {//4.4 全透明状态栏
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);

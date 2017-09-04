@@ -14,7 +14,7 @@
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/main_color"
+        android:background="@color/skin_text"
         android:progress="10"
         android:id="@+id/gank_detail_progress"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>

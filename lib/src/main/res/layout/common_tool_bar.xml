@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <android.support.v7.widget.Toolbar
-        android:paddingTop="@dimen/fit_padding_top"
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/common_toolbar"
-        android:background="@color/blue_120"
+        android:background="@color/skin_text"
         yc:popupTheme="@style/PopMenuStyle"
         yc:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 </merge>

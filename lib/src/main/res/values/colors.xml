@@ -5,10 +5,10 @@
     <color name="blue_100">#57bfdc</color>
     <color name="blue_120">#48a1ba</color>
     <color name="blue_80">#71c8e1</color>
-    <color name="main_color">@color/blue_100</color>
+    <color name="skin_text">#57bfdc</color>
 
     <!--窗体颜色部分-->
-    <color name="colorPrimary">@color/blue_100</color>
+    <color name="colorPrimary">@color/skin_text</color>
     <color name="colorPrimaryDark">@color/blue_120</color>
     <color name="colorAccent">@color/blue_80</color>
 

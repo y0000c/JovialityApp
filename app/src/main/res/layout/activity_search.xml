@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/main_color"
+    android:background="@color/skin_text"
     tools:context="demo.yc.joviality.ui.activity.SearchActivity">
 
-    <View android:layout_width="match_parent"
-          android:layout_height="@dimen/fit_padding_top"
-          android:background="@color/main_color"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fit_padding_top"
+        android:background="@color/skin_text"/>
 
     <LinearLayout
         android:gravity="center_vertical"
@@ -20,6 +21,7 @@
 
         <!--back-->
         <LinearLayout
+            android:id="@+id/search_back_layout"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:gravity="center">
