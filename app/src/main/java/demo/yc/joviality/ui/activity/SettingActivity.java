@@ -46,8 +46,8 @@ public class SettingActivity extends BaseAppActivity
         }
     }
 
-    @OnClick(R.id.setting_change)
-    public void onViewClicked()
+    @OnClick(R.id.setting_change_green)
+    public void onClickedGreen()
     {
         SkinManager.getInstance().changeSkin(getFileStreamPath(Const.SKIN_GREEN_APK).getAbsolutePath(), Const.SKIN_GREEN_PACK, new ISkinChangeCallback()
         {
@@ -70,5 +70,37 @@ public class SettingActivity extends BaseAppActivity
                 LogUtil.w("skin","============change skin  ok");
             }
         });
+    }
+
+    @OnClick(R.id.setting_change_red)
+    public void onClickedRed()
+    {
+        SkinManager.getInstance().changeSkin(getFileStreamPath(Const.SKIN_RED_APK).getAbsolutePath(), Const.SKIN_RED_PACK, new ISkinChangeCallback()
+        {
+            @Override
+            public void onStart()
+            {
+                LogUtil.w("skin","=========start to change skin========");
+            }
+
+            @Override
+            public void onError(Exception e)
+            {
+                e.printStackTrace();
+                LogUtil.w("skin","=============change skin error=========== ");
+            }
+
+            @Override
+            public void onSuccess()
+            {
+                LogUtil.w("skin","============change skin  ok");
+            }
+        });
+    }
+
+    @OnClick(R.id.setting_reset)
+    public void onClickedReset()
+    {
+        SkinManager.getInstance().reset();
     }
 }

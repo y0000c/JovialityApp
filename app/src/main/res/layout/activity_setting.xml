@@ -12,8 +12,18 @@
         layout="@layout/common_tool_bar"/>
 
     <Button
-        android:text="改变主题"
-        android:id="@+id/setting_change"
+        android:text="改变主题green"
+        android:id="@+id/setting_change_green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="改变主题red"
+        android:id="@+id/setting_change_red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="恢复默认blue"
+        android:id="@+id/setting_reset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

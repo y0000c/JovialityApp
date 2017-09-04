@@ -296,4 +296,13 @@ public class SkinManager
         SPUtil.putSingle(mContext, Const.APK_KEY,currentApkPath);
         SPUtil.putSingle(mContext,Const.PCK_KEY,currentPckName);
     }
+
+   public void reset()
+   {
+       currentPckName = mContext.getPackageName();
+       currentApkPath = null;
+       SPUtil.clearAll(mContext);
+       mResource = mContext.getResources();
+       notifyAllListener();
+   }
 }

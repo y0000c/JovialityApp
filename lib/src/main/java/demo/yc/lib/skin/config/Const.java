@@ -19,7 +19,7 @@ public class Const
     public static final String SKIN_PREFIX = "skin_";
 
     public static final String SKIN_RED_APK = "skin_red.apk";
-    public static final String SKIN_RED_PACK = "demo.yc.skinpluginred";
+    public static final String SKIN_RED_PACK = "demo.yc.skinpluginres";
 
     public static final String SKIN_GREEN_APK = "skin_green.apk";
     public static final String SKIN_GREEN_PACK = "demo.yc.skinplugingreen";
