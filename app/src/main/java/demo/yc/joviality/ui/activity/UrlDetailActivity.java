@@ -3,6 +3,7 @@ package demo.yc.joviality.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ public class UrlDetailActivity extends BaseDetailActivity
     ProgressBar mProgress;
     @BindView(R.id.url_detail_web)
     WebView mWebView;
+    @BindView(R.id.url_detail_refresh)
+    SwipeRefreshLayout refreshLayout;
 
     private Object item;
 
@@ -60,7 +63,6 @@ public class UrlDetailActivity extends BaseDetailActivity
             title = newsItem.getTitle();
             desc = newsItem.getTitle();
             url = newsItem.getLink();
-
         }
     }
 
@@ -96,6 +98,8 @@ public class UrlDetailActivity extends BaseDetailActivity
                 if(newProgress >= 100)
                 {
                     mProgress.setVisibility(View.GONE);
+                    refreshLayout.setRefreshing(false);
+                    refreshLayout.setEnabled(false);
                     setTitle(title);
                 }
             }
@@ -110,7 +114,15 @@ public class UrlDetailActivity extends BaseDetailActivity
             }
         });
 
-        mWebView.loadUrl(url);
+       refreshLayout.post(new Runnable()
+       {
+           @Override
+           public void run()
+           {
+               refreshLayout.setRefreshing(true);
+               mWebView.loadUrl(url);
+           }
+       });
 
     }
 

@@ -1,45 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:yc="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/url_detail_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <android.support.design.widget.AppBarLayout
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/url_detail_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <android.support.v7.widget.Toolbar
-            android:paddingTop="@dimen/fit_padding_top"
-            android:id="@+id/common_toolbar"
+        android:layout_height="match_parent">
+        <include
+            layout="@layout/common_tool_bar"/>
+        <ProgressBar
+            android:id="@+id/url_detail_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/skin_120_color"
-            yc:layout_scrollFlags="scroll|exitUntilCollapsed"
-            yc:popupTheme="@style/PopMenuStyle"
-            yc:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        yc:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <LinearLayout
+            android:layout_height="3dp"/>
+        <android.support.v4.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <ProgressBar
-                android:id="@+id/url_detail_progress"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"/>
+            android:id="@+id/url_detail_refresh">
             <WebView
                 android:id="@+id/url_detail_web"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </LinearLayout>
-   </android.support.v4.widget.AppBarLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+</LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
