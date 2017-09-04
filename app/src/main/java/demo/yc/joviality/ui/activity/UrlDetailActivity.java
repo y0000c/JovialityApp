@@ -23,11 +23,11 @@ import demo.yc.jovialityyc.R;
 
 public class UrlDetailActivity extends BaseDetailActivity
 {
-    @BindView(R.id.gank_detail_layout)
+    @BindView(R.id.url_detail_layout)
     ViewGroup layout;
-    @BindView(R.id.gank_detail_progress)
+    @BindView(R.id.url_detail_progress)
     ProgressBar mProgress;
-    @BindView(R.id.gank_detail_web)
+    @BindView(R.id.url_detail_web)
     WebView mWebView;
 
     private Object item;

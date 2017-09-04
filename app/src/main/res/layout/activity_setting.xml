@@ -22,6 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
+        android:text="改变主题purple"
+        android:id="@+id/setting_change_purple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
         android:text="恢复默认blue"
         android:id="@+id/setting_reset"
         android:layout_width="match_parent"

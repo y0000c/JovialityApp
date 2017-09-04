@@ -10,7 +10,7 @@
         layout="@layout/common_tool_bar"/>
 
     <android.support.design.widget.TabLayout
-        android:background="@color/skin_text"
+        android:background="@color/skin_main_color"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:id="@+id/image_main_indicator"

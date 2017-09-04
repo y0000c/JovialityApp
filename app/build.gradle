@@ -29,7 +29,7 @@ android {
         }
     }
     greendao {
-        schemaVersion 2
+        schemaVersion 1
         daoPackage 'demo.yc.joviality.gen'
         targetGenDir 'src/main/java'
 
@@ -51,8 +51,8 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
     compile 'com.android.support:support-v4:26.+'
     compile 'org.greenrobot:greendao:3.2.2'
+    compile 'com.github.bumptech.glide:glide:4.0.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-    compile 'com.github.bumptech.glide:glide:4.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }

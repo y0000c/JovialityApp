@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/skin_text"
+    android:background="@color/skin_main_color"
     tools:context="demo.yc.joviality.ui.activity.SearchActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/fit_padding_top"
-        android:background="@color/skin_text"/>
+        android:background="@color/skin_main_color"/>
 
     <LinearLayout
         android:gravity="center_vertical"

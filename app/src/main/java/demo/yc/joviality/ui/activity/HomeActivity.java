@@ -252,7 +252,6 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                 ActivityUtils.getInstance().clearActivity();
                 return;
             }
-
             isFinish = true;
             Snackbar.make(mHomeDrawerLayout
                     ,"再次点击退出",Snackbar.LENGTH_SHORT).show();
@@ -272,10 +271,8 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     {
         if(mHomeNavigationView != null)
         {
-            mHomeNavigationView.setItemIconTintList(SkinManager.getInstance().getColorByPlugin("skin_text"));
-            mHomeNavigationView.setItemTextColor(SkinManager.getInstance().getColorByPlugin("skin_text"));
-           // mHomeNavigationView.setText
+            mHomeNavigationView.setItemIconTintList(SkinManager.getInstance().getColorByPlugin("skin_main_color"));
+            mHomeNavigationView.setItemTextColor(SkinManager.getInstance().getColorByPlugin("navig_menu_color"));
         }
-
     }
 }

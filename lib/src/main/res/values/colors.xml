@@ -3,13 +3,13 @@
 
     <!--整个app主题颜色就是蓝色-->
     <color name="blue_100">#57bfdc</color>
-    <color name="blue_120">#48a1ba</color>
+    <color name="skin_120_color">#48a1ba</color>
     <color name="blue_80">#71c8e1</color>
-    <color name="skin_text">#57bfdc</color>
+    <color name="skin_main_color">#57bfdc</color>
 
     <!--窗体颜色部分-->
-    <color name="colorPrimary">@color/skin_text</color>
-    <color name="colorPrimaryDark">@color/blue_120</color>
+    <color name="colorPrimary">@color/skin_main_color</color>
+    <color name="colorPrimaryDark">@color/skin_120_color</color>
     <color name="colorAccent">@color/blue_80</color>
 
     <!--白色和透明度-->
@@ -25,6 +25,5 @@
     <color name="alpha_40_black">#66000000</color>
     <color name="alpha_60_black">#99000000</color>
     <color name="alpha_80_black">#CC000000</color>
-
 
 </resources>

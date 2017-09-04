@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/common_toolbar"
-        android:background="@color/skin_text"
+        android:background="@color/skin_120_color"
         yc:popupTheme="@style/PopMenuStyle"
         yc:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 </merge>

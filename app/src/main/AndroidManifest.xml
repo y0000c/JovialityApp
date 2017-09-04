@@ -45,6 +45,9 @@
             android:name="demo.yc.joviality.service.LoadApkFileService"
             android:exported="false">
         </service>
+
+        <activity android:name="demo.yc.joviality.ui.activity.SkinChangeActivity">
+        </activity>
     </application>
 
 </manifest>
