@@ -3,7 +3,7 @@
 
     <!--整个app主题颜色就是蓝色-->
     <color name="blue_100">#57bfdc</color>
-    <color name="skin_120_color">#48a1ba</color>
+    <color name="skin_120_color">#4ea9c2</color>
     <color name="blue_80">#71c8e1</color>
     <color name="skin_main_color">#57bfdc</color>
 
@@ -25,5 +25,6 @@
     <color name="alpha_40_black">#66000000</color>
     <color name="alpha_60_black">#99000000</color>
     <color name="alpha_80_black">#CC000000</color>
+    <color name="skin_black_40">#ffffff</color>
 
 </resources>

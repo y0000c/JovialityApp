@@ -5,6 +5,7 @@
     android:id="@+id/image_list_refresh_layout">
 
     <android.support.v7.widget.RecyclerView
+        android:background="@color/skin_black_40"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/image_list_recycler_view"/>

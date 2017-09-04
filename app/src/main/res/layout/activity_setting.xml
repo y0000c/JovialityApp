@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/skin_black_40"
     tools:context="demo.yc.joviality.ui.activity.SettingActivity">
 
     <include
@@ -24,6 +25,11 @@
     <Button
         android:text="改变主题purple"
         android:id="@+id/setting_change_purple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:text="改变主题black"
+        android:id="@+id/setting_change_black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button

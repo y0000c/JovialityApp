@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
+    android:background="@color/skin_black_40"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:yc="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -28,7 +29,8 @@
         android:layout_height="match_parent"
         android:id="@+id/home_navigation_view"
         yc:headerLayout="@layout/home_navigation_header_layout"
-        yc:menu="@menu/home_navigation_menu">
+        yc:menu="@menu/home_navigation_menu"
+        android:background="@color/skin_black_40">
    </android.support.design.widget.NavigationView>
 
 

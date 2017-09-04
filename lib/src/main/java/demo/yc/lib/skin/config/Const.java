@@ -26,24 +26,29 @@ public class Const
     public static final String SKIN_GREEN_APK = "skin_green.apk";
     public static final String SKIN_GREEN_PACK = "demo.yc.skinplugingreen";
 
+    public static final String SKIN_BLACK_APK = "skin_black.apk";
+    public static final String SKIN_BLACK_PACK = "demo.yc.skinpluginblack";
+
 
     public static final int SKIN_TYPY_GREEN = 111;
     public static final int SKIN_TYPY_RED = 112;
     public static final int SKIN_TYPY_PURPLE = 113;
+    public static final int SKIN_TYPY_BLACK = 114;
 
 
     public static final String RED_COLOR = "#e13c3c";
     public static final String GREEN_COLOR = "#5fbbb0";
     public static final String PURPLE_COLOR = "#c256c4";
+    public static final String BLACK_COLOR = "#646464";
 
 
     public static final String APK_KEY = "apk_path";
     public static final String PCK_KEY = "pck_name";
 
 
-    public static final String[] SKIN_APK_LIST = {SKIN_RED_APK,SKIN_GREEN_APK,SKIN_PURPLE_APK};
-    public static final String[] SKIN_PCK_LIST = {SKIN_RED_PACK,SKIN_GREEN_PACK,SKIN_PURPLE_PACK};
-    public static final Integer[] SKIN_TYPE_LIST = {SKIN_TYPY_RED,SKIN_TYPY_GREEN,SKIN_TYPY_PURPLE};
-    public static final String[] SKIN_COLOR_LIST = {RED_COLOR,GREEN_COLOR,PURPLE_COLOR};
+    public static final String[] SKIN_APK_LIST = {SKIN_RED_APK,SKIN_GREEN_APK,SKIN_PURPLE_APK,SKIN_BLACK_APK};
+    public static final String[] SKIN_PCK_LIST = {SKIN_RED_PACK,SKIN_GREEN_PACK,SKIN_PURPLE_PACK,SKIN_BLACK_PACK};
+    public static final Integer[] SKIN_TYPE_LIST = {SKIN_TYPY_RED,SKIN_TYPY_GREEN,SKIN_TYPY_PURPLE,SKIN_TYPY_BLACK};
+    public static final String[] SKIN_COLOR_LIST = {RED_COLOR,GREEN_COLOR,PURPLE_COLOR,BLACK_COLOR};
 
 }

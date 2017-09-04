@@ -9,7 +9,7 @@ import demo.yc.joviality.entity.ImageEntity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
 import demo.yc.lib.base.ViewHolder;
-import demo.yc.lib.uis.ScaleImageView;
+import demo.yc.lib.widgets.ScaleImageView;
 
 /**
  * @author: YC

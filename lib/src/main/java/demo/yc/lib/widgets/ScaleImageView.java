@@ -1,10 +1,8 @@
-package demo.yc.lib.uis;
+package demo.yc.lib.widgets;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
-import static android.R.attr.width;
 
 /**
  * Author: Othershe

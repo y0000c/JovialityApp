@@ -20,6 +20,6 @@ public class HomeModelImp
      */
     public int getMainImageId(Context context)
     {
-        return R.drawable.morning;
+        return R.drawable.night;
     }
 }

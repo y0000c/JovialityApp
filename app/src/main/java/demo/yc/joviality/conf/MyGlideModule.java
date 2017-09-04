@@ -30,5 +30,4 @@ public class MyGlideModule extends AppGlideModule
         FilePath.createDir(FilePath.cachePath);
         builder.setDiskCache(new DiskLruCacheFactory(FilePath.cachePath, cacheSize));
     }
-
 }

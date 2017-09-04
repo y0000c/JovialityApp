@@ -16,7 +16,7 @@ import demo.yc.lib.utils.LogUtil;
 
 public class URLHelper
 {
-    public static final int PAGE_LIMIT = 20;
+    public static final int PAGE_LIMIT = 10;
 
     /**
      * 获取百度图片url

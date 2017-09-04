@@ -116,6 +116,31 @@ public class SettingActivity extends BaseAppActivity
         });
     }
 
+    @OnClick(R.id.setting_change_black)
+    public void onClickedBlack()
+    {
+        SkinManager.getInstance().changeSkin(getFileStreamPath(Const.SKIN_BLACK_APK).getAbsolutePath(), Const.SKIN_BLACK_PACK, new ISkinChangeCallback()
+        {
+            @Override
+            public void onStart()
+            {
+                LogUtil.w("skin","=========start to change skin========");
+            }
+
+            @Override
+            public void onError(Exception e)
+            {
+                e.printStackTrace();
+                LogUtil.w("skin","=============change skin error=========== ");
+            }
+            @Override
+            public void onSuccess()
+            {
+                LogUtil.w("skin","============change skin  ok");
+            }
+        });
+    }
+
     @OnClick(R.id.setting_reset)
     public void onClickedReset()
     {

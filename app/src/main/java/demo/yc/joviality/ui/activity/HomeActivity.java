@@ -105,7 +105,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
         mainImage.setImageResource(imageId);
 
         //设置menu选项图片颜色，null表示图片自身颜色，其他则覆盖图片自身颜色
-        mHomeNavigationView.setItemIconTintList(null);
+        mHomeNavigationView.setItemIconTintList(getResources().getColorStateList(R.color.skin_main_color));
         mHomeNavigationView.setItemTextColor(getResources().getColorStateList(R.color.navig_menu_color));
 
         // menu item 点击事件
