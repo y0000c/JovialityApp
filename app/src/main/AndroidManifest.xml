@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name="demo.yc.joviality.ui.activity.SplashActivity"
             android:screenOrientation="portrait">
@@ -41,6 +40,11 @@
         </activity>
         <activity android:name="demo.yc.joviality.ui.activity.SearchActivity">
         </activity>
+
+        <service
+            android:name="demo.yc.joviality.service.LoadApkFileService"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>

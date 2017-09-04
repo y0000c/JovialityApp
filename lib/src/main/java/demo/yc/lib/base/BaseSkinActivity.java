@@ -106,7 +106,6 @@ public abstract class BaseSkinActivity extends AppCompatActivity implements ISki
             }
         });
 
-
         super.onCreate(savedInstanceState);
     }
 
@@ -124,6 +123,7 @@ public abstract class BaseSkinActivity extends AppCompatActivity implements ISki
         //判断当前是否需要马上换肤
         if(SkinManager.getInstance().isNeedLoadPlugin())
         {
+            LogUtil.w("file","初始化需要换肤------");
             SkinManager.getInstance().changeItemSkin(this);
             this.updateSKin();
         }

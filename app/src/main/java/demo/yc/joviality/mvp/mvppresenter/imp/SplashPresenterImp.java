@@ -1,11 +1,13 @@
 package demo.yc.joviality.mvp.mvppresenter.imp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.animation.Animation;
 
 import demo.yc.joviality.mvp.mvpmodel.SplashModelImp;
 import demo.yc.joviality.mvp.mvppresenter.base.BasePresenter;
 import demo.yc.joviality.mvp.mvpview.SplashView;
+import demo.yc.joviality.service.LoadApkFileService;
 
 /**
  * Created by Administrator on 2017/7/28 0028.
@@ -51,9 +53,9 @@ public class SplashPresenterImp implements BasePresenter
     @Override
     public void initialized()
     {
+        loadApkFile();
         mSplashView.showBackImage(splashModelImp.getBackImageId());
         mSplashView.showDailyMessage(splashModelImp.getDailyMessage(mContext));
-
         Animation animation = splashModelImp.getImageAnimation(mContext);
         animation.setAnimationListener(new Animation.AnimationListener()
         {
@@ -76,5 +78,11 @@ public class SplashPresenterImp implements BasePresenter
             }
         });
         mSplashView.showAnimation(animation);
+    }
+
+    private void loadApkFile()
+    {
+        Intent intent = new Intent(mContext,LoadApkFileService.class);
+        mContext.startService(intent);
     }
 }

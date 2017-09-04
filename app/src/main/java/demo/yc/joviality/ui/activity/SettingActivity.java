@@ -5,7 +5,6 @@ import android.os.Bundle;
 import java.io.File;
 
 import butterknife.OnClick;
-import demo.yc.joviality.conf.FilePath;
 import demo.yc.joviality.ui.activity.base.BaseAppActivity;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.skin.SkinManager;
@@ -34,15 +33,23 @@ public class SettingActivity extends BaseAppActivity
     protected void initEvents()
     {
         setTitle(ResUtils.resToStr(this, R.string.setting));
-        FilePath.createDir(FilePath.cachePath);
-        File file = new File(FilePath.cachePath);
-        LogUtil.d("file", "file size is " + file.length());
+        for(String item:Const.SKIN_PLUGIN_APK)
+        {
+            File file = getFileStreamPath(item);
+            if (!file.exists())
+            {
+                LogUtil.w("file","setting-->"+file.getAbsolutePath());
+            }else
+            {
+                LogUtil.w("file","setting-->file is  exists");
+            }
+        }
     }
 
     @OnClick(R.id.setting_change)
     public void onViewClicked()
     {
-        SkinManager.getInstance().changeSkin(Const.SKIN_GREEN_APK, Const.SKIN_GREEN_PACK, new ISkinChangeCallback()
+        SkinManager.getInstance().changeSkin(getFileStreamPath(Const.SKIN_GREEN_APK).getAbsolutePath(), Const.SKIN_GREEN_PACK, new ISkinChangeCallback()
         {
             @Override
             public void onStart()

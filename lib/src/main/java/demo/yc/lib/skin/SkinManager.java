@@ -6,7 +6,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.text.TextUtils;
+import android.util.Log;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -17,8 +17,10 @@ import java.util.Map;
 import demo.yc.lib.skin.attr.SkinView;
 import demo.yc.lib.skin.callback.ISkinChangeCallback;
 import demo.yc.lib.skin.callback.ISkinChangedListener;
+import demo.yc.lib.skin.config.Const;
 import demo.yc.lib.utils.CommonUtil;
 import demo.yc.lib.utils.LogUtil;
+import demo.yc.lib.utils.SPUtil;
 
 /**
  * @author: YC
@@ -84,6 +86,7 @@ public class SkinManager
     public void init(Context context)
     {
         mContext = context.getApplicationContext();
+        getLocalData();
     }
 
 
@@ -95,22 +98,23 @@ public class SkinManager
      */
     private void loginPlugin(String apkPath,String pkgName) throws Exception
     {
-
         LogUtil.w("skin",apkPath+"----"+pkgName);
         if(CommonUtil.isEmpty(apkPath) || CommonUtil.isEmpty(pkgName))
             return;
         if(apkPath.equals(currentApkPath) && pkgName.equals(currentPckName))
             return;
-        currentApkPath = apkPath;
-        currentPckName = pkgName;
+
         manager = AssetManager.class.newInstance();
         Method method = manager.getClass().getMethod("addAssetPath",String.class);
-        method.invoke(manager,currentApkPath);
+        method.invoke(manager,apkPath);
         if(superRes == null)
             superRes = mContext.getResources();
         mResource = new Resources(manager,superRes.getDisplayMetrics()
                 ,superRes.getConfiguration());
 
+        currentApkPath = apkPath;
+        currentPckName = pkgName;
+        setLocalData();
     }
 
     /**
@@ -188,6 +192,7 @@ public class SkinManager
         if(callback == null)
             callback = ISkinChangeCallback.defaultCallBack;
         final ISkinChangeCallback call = callback;
+
         new AsyncTask<Void, Void, Integer>()
         {
             @Override
@@ -256,13 +261,39 @@ public class SkinManager
 
     public boolean isNeedLoadPlugin()
     {
-        if(TextUtils.isEmpty(currentApkPath))
+
+        if(CommonUtil.isEmpty(currentApkPath))
             return false;
 
-        if(TextUtils.isEmpty(currentPckName))
+        if(CommonUtil.isEmpty(currentPckName))
             return false;
+
         return true;
     }
 
 
+    public void getLocalData()
+    {
+        String apk  = (String) SPUtil.getSingle(mContext, Const.APK_KEY,"");
+        String pck = (String) SPUtil.getSingle(mContext, Const.PCK_KEY,"");
+        try
+        {
+            loginPlugin(apk,pck);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            SPUtil.clearAll(mContext);
+        }
+
+        Log.w("file","get data==="+apk+"--"+pck);
+
+
+    }
+
+    public void setLocalData()
+    {
+        Log.w("file","set data==="+currentApkPath+"--"+currentPckName);
+        SPUtil.putSingle(mContext, Const.APK_KEY,currentApkPath);
+        SPUtil.putSingle(mContext,Const.PCK_KEY,currentPckName);
+    }
 }

@@ -80,7 +80,6 @@ public abstract class BaseActivity extends BaseSkinActivity
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-
     }
 
     @Override
