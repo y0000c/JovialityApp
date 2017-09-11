@@ -67,7 +67,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
     @Override
     protected void getBundleExtras(Bundle extras)
     {
-
+       
     }
 
     @Override
@@ -130,10 +130,10 @@ public class HomeActivity extends BaseAppActivity implements HomeView
                         showCurrentFragment(
                                 ResUtils.resToStr(HomeActivity.this,R.string.image));
                         break;
-                    case R.id.home_video_item:
-                        showCurrentFragment(
-                                ResUtils.resToStr(HomeActivity.this,R.string.video));
-                        break;
+//                    case R.id.home_video_item:
+//                        showCurrentFragment(
+//                                ResUtils.resToStr(HomeActivity.this,R.string.video));
+//                        break;
                     case R.id.home_gank_item:
                         showCurrentFragment(
                                 ResUtils.resToStr(HomeActivity.this,R.string.gank));

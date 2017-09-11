@@ -39,6 +39,7 @@ public abstract class SubTypeFragment extends BaseFragment
 
 
     protected static final String SUB_TYPE = "subType";
+
     private boolean isViewInitiated;
     private boolean isVisibleToUser;
     private boolean isDataInitiated;
@@ -89,6 +90,7 @@ public abstract class SubTypeFragment extends BaseFragment
     {
         super.onActivityCreated(savedInstanceState);
         isViewInitiated = true;
+        LogUtil.d("visible",TAG+" is view initiated -->"+isViewInitiated);
         initGetData();
     }
 

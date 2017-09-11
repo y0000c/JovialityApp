@@ -20,16 +20,19 @@ public class SkinEntity
     private String apkPath;
     private String pckName;
     private String color;
+    private String name;
     @Unique
     private int type;
-    @Generated(hash = 826922949)
+    @Generated(hash = 1876489310)
     public SkinEntity(Long id, String apkPath, String pckName, String color,
-            int type) {
+            String name, int type) {
         this.id = id;
         this.apkPath = apkPath;
         this.pckName = pckName;
         this.color = color;
+        this.name = name;
         this.type = type;
+
     }
     @Generated(hash = 237489517)
     public SkinEntity() {
@@ -63,5 +66,11 @@ public class SkinEntity
     }
     public void setType(int type) {
         this.type = type;
+    }
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }

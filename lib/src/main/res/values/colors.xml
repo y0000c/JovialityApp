@@ -25,6 +25,6 @@
     <color name="alpha_40_black">#66000000</color>
     <color name="alpha_60_black">#99000000</color>
     <color name="alpha_80_black">#CC000000</color>
-    <color name="skin_black_40">#ffffff</color>
+    <color name="main_back">#ffffff</color>
 
 </resources>

@@ -62,6 +62,7 @@ public class FragListPresenterImp<T> implements
     @Override
     public void onError(final String msg)
     {
+        if(mContext != null)
         ((Activity)mContext).runOnUiThread(new Runnable()
         {
             @Override

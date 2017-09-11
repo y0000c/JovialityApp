@@ -6,6 +6,8 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.yc.lib.http.HttpHelper;
+
 /**
  * 管理每个activity的链表。用于安全退出
  *
@@ -63,12 +65,15 @@ public class ActivityUtils
      */
     public synchronized void clearActivity()
     {
+        HttpHelper.cancelAllRequest();
         for(Activity a:list)
         {
             if(!a.isFinishing())
                 a.finish();
         }
         list.clear();
+
+
     }
 
     /**

@@ -46,6 +46,9 @@ public class LoadApkFileService extends IntentService
                 else
                     LogUtil.w("file","file is exists--"+file.getAbsolutePath());
             }
+
+            if(dao.queryBuilder().where(SkinEntityDao.Properties.Type.eq(Const.SKIN_TYPY_RESET)).count() == 0)
+                dao.insert(new SkinEntity(null,"","",Const.BLUE_COLOR,Const.RESET_NAME,Const.SKIN_TYPY_RESET));
         }
     }
 
@@ -67,7 +70,9 @@ public class LoadApkFileService extends IntentService
                     ,Const.SKIN_APK_LIST[index]
                     ,Const.SKIN_PCK_LIST[index]
                     ,Const.SKIN_COLOR_LIST[index]
-                    ,Const.SKIN_TYPE_LIST[index]));
+                    ,Const.SKIN_NAME_LIST[index]
+                    ,Const.SKIN_TYPE_LIST[index])
+                   );
         }catch (Exception e)
         {
             e.printStackTrace();

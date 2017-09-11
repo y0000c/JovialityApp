@@ -28,7 +28,7 @@
         <item>@string/news</item>
         <item>@string/gank</item>
         <item>@string/image</item>
-        <item>@string/video</item>
+        <!--<item>@string/video</item>-->
     </string-array>
 
     <string name="setting">设置</string>
@@ -72,15 +72,15 @@
         <item>搞笑</item>
     </string-array>
 
-    <string name="video">视频</string>
-    <string-array name="videos">
-        <item>111</item>
-        <item>2222</item>
-        <item>333</item>
-        <item>444</item>
-        <item>5555</item>
-        <item>6666</item>
-    </string-array>
+    <!--<string name="video">视频</string>-->
+    <!--<string-array name="videos">-->
+        <!--<item>111</item>-->
+        <!--<item>2222</item>-->
+        <!--<item>333</item>-->
+        <!--<item>444</item>-->
+        <!--<item>5555</item>-->
+        <!--<item>6666</item>-->
+    <!--</string-array>-->
 
 
     <!-- TODO: Remove or change this placeholder text -->

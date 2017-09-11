@@ -156,8 +156,7 @@ public abstract class BaseActivity extends BaseSkinActivity
         startActivityForResult(intent,requestCode);
     }
 
-    // tool 不是主界面的时候，点击左侧返回键的响应事件。到底是如何跟主界面区分开的，
-    // 可能就是在HomeActivity中的一个方法有关，toggle.synState();有关
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

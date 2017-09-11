@@ -34,12 +34,14 @@ public class Const
     public static final int SKIN_TYPY_RED = 112;
     public static final int SKIN_TYPY_PURPLE = 113;
     public static final int SKIN_TYPY_BLACK = 114;
+    public static final int SKIN_TYPY_RESET = 115;
 
 
     public static final String RED_COLOR = "#e13c3c";
     public static final String GREEN_COLOR = "#5fbbb0";
     public static final String PURPLE_COLOR = "#c256c4";
     public static final String BLACK_COLOR = "#646464";
+    public static final String BLUE_COLOR = "#57bfdc";
 
 
     public static final String APK_KEY = "apk_path";
@@ -50,5 +52,10 @@ public class Const
     public static final String[] SKIN_PCK_LIST = {SKIN_RED_PACK,SKIN_GREEN_PACK,SKIN_PURPLE_PACK,SKIN_BLACK_PACK};
     public static final Integer[] SKIN_TYPE_LIST = {SKIN_TYPY_RED,SKIN_TYPY_GREEN,SKIN_TYPY_PURPLE,SKIN_TYPY_BLACK};
     public static final String[] SKIN_COLOR_LIST = {RED_COLOR,GREEN_COLOR,PURPLE_COLOR,BLACK_COLOR};
-
+    private static final String RED_NAME = "火焰红";
+    private static final String GREEN_NAME = "草原绿";
+    private static final String PURPLE_NAME = "炫酷紫";
+    private static final String BLACK_NAME = "夜间模式";
+    public static final String RESET_NAME ="天空蓝（默认）";
+    public static final String[] SKIN_NAME_LIST = {RED_NAME,GREEN_NAME,PURPLE_NAME,BLACK_NAME};
 }

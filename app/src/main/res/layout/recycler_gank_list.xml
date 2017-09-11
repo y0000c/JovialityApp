@@ -5,10 +5,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:foreground="?attr/selectableItemBackground"
-    android:background="@color/skin_black_40">
+    android:background="@color/main_back">
 
     <RelativeLayout
-        android:background="@color/skin_black_40"
+        android:background="@color/main_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

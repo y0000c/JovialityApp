@@ -114,6 +114,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         if(isFooterView(holder.getLayoutPosition()))
         {
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+
             if(lp instanceof StaggeredGridLayoutManager.LayoutParams)
             {
                 StaggeredGridLayoutManager.LayoutParams p =
@@ -197,6 +198,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     {
         if (mFooterLayout.getChildAt(0) == mLoadingView)
             loadMoreListener.onLoadMore(false);
+
     }
     /**
      * 绑定布局和设置点击事件

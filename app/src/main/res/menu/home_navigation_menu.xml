@@ -16,10 +16,10 @@
             android:id="@+id/home_images_item"
             android:title="@string/image"
             android:icon="@drawable/image"/>
-        <item
-            android:id="@+id/home_video_item"
-            android:title="@string/video"
-            android:icon="@drawable/videos"/>
+        <!--<item-->
+            <!--android:id="@+id/home_video_item"-->
+            <!--android:title="@string/video"-->
+            <!--android:icon="@drawable/videos"/>-->
     </group>
     <group android:checkableBehavior="none" android:id="@+id/other">
         <item

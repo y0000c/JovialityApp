@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:id="@+id/url_detail_refresh">
             <WebView
-                android:background="@color/skin_black_40"
+                android:background="@color/main_back"
                 android:id="@+id/url_detail_web"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

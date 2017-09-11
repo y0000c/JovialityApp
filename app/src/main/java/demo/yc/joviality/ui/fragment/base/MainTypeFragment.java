@@ -12,7 +12,6 @@ import demo.yc.joviality.ui.adapter.MainTypeFragAdapter;
 import demo.yc.joviality.ui.fragment.GanksListFragment;
 import demo.yc.joviality.ui.fragment.ImageListFragment;
 import demo.yc.joviality.ui.fragment.NewsListFragment;
-import demo.yc.joviality.ui.fragment.VideoListFragment;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseFragment;
 import demo.yc.lib.utils.LogUtil;
@@ -88,12 +87,13 @@ public class MainTypeFragment extends BaseFragment
             titleList = ResUtils.resToStrList(mContext, R.array.images);
             for (String item : titleList)
                 fragList.add(ImageListFragment.newInstance(item));
-        } else if (currentType.equals(ResUtils.resToStr(mContext,R.string.video)))
-        {
-            titleList = ResUtils.resToStrList(mContext, R.array.videos);
-            for (String item : titleList)
-                fragList.add(VideoListFragment.newInstance(item));
         }
+//          else if (currentType.equals(ResUtils.resToStr(mContext,R.string.video)))
+//        {
+//            titleList = ResUtils.resToStrList(mContext, R.array.videos);
+//            for (String item : titleList)
+//                fragList.add(VideoListFragment.newInstance(item));
+//        }
         else if (currentType.equals(ResUtils.resToStr(mContext,R.string.gank)))
         {
             titleList = ResUtils.resToStrList(mContext, R.array.ganks);
