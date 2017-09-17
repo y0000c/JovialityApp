@@ -20,7 +20,7 @@ public class CommonUtil
     public static boolean isEmpty(String msg)
     {
         // 利用自带工具类判断非空 然后正则匹配空格
-        if(TextUtils.isEmpty(msg) || msg.matches("\\s+"))
+        if(TextUtils.isEmpty(msg) || TextUtils.isEmpty(msg.trim()))
             return true;
         return false;
     }

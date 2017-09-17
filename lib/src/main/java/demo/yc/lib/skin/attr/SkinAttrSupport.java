@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import demo.yc.lib.skin.config.Const;
-import demo.yc.lib.utils.LogUtil;
 
 
 /**
@@ -30,7 +29,7 @@ public class SkinAttrSupport
             String attrName = attrs.getAttributeName(i);
             String attrValue = attrs.getAttributeValue(i);
 
-            LogUtil.w("skin",attrName+"============="+attrValue);
+      //      LogUtil.w("skin",attrName+"============="+attrValue);
 
             if (attrValue.startsWith("@"))
             {
@@ -40,7 +39,7 @@ public class SkinAttrSupport
                     id = Integer.parseInt(attrValue.substring(1));
                 } catch (Exception e)
                 {
-                    e.printStackTrace();
+                  //  e.printStackTrace();
                 }
                 if (id == -1)
                     continue;
@@ -57,7 +56,7 @@ public class SkinAttrSupport
                 {
                     attrType = getSupportAttrType(attrName);
 
-                    LogUtil.w("skin", "attrType-----------"+attrType);
+                 //   LogUtil.w("skin", "attrType-----------"+attrType);
                     if (attrType == null)
                         continue;
                     attrItem = new SkinAttr(resName, attrType);

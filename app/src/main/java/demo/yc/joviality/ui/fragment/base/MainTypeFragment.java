@@ -50,6 +50,7 @@ public class MainTypeFragment extends BaseFragment
     ViewPager mPager;
 
 
+
     public static MainTypeFragment newInstance(String type)
     {
         MainTypeFragment fragment = new MainTypeFragment();
@@ -140,6 +141,12 @@ public class MainTypeFragment extends BaseFragment
 
             }
         });
+    }
+
+    @Override
+    protected void endEvent()
+    {
+
     }
 
 }

@@ -282,7 +282,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         addFooterView(mLoadingView);
     }
 
-    public void showLoadFiledView()
+    public void showLoadFailedView()
     {
         addFooterView(mLoadFailedView);
     }

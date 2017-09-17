@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,15 +87,6 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
         mPresenter.loadListData(R.string.image,mSubType,currentPager);
     }
 
-    @Override
-    public void onError(String msg)
-    {
-        Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
-        if(isLoadMore)
-            mAdapter.showLoadFiledView();
-        else
-            mRefreshLayout.setRefreshing(false);
-    }
 
     @Override
     public void onSuccess(List<ImageEntity> imageList)

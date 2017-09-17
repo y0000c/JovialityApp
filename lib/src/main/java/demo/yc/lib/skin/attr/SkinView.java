@@ -4,8 +4,6 @@ import android.view.View;
 
 import java.util.List;
 
-import demo.yc.lib.utils.LogUtil;
-
 /**
  * @author: YC
  * @date: 2017/9/2 0002
@@ -30,7 +28,7 @@ public class SkinView
         mAttrs = attrs;
         mView = view;
 
-        LogUtil.w("attr","attrlist size is "+attrs.size());
+   //     LogUtil.w("attr","attrlist size is "+attrs.size());
     }
 
     public void apply()
@@ -38,7 +36,7 @@ public class SkinView
 
         for(SkinAttr attr:mAttrs)
         {
-            LogUtil.w("attr",attr.getResName()+"----"+attr.getResType());
+          //  LogUtil.w("attr",attr.getResName()+"----"+attr.getResType());
             attr.apply(mView);
         }
     }

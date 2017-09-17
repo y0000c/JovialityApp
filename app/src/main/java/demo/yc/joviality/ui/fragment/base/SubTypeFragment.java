@@ -8,19 +8,22 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import demo.yc.joviality.mvp.mvppresenter.base.FragListPresenter;
+import demo.yc.joviality.mvp.mvpview.base.BaseAppView;
 import demo.yc.jovialityyc.R;
 import demo.yc.lib.base.BaseAdapter;
 import demo.yc.lib.base.BaseFragment;
+import demo.yc.lib.utils.CommonUtil;
 import demo.yc.lib.utils.LogUtil;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public abstract class SubTypeFragment extends BaseFragment
-        implements SwipeRefreshLayout.OnRefreshListener
+        implements SwipeRefreshLayout.OnRefreshListener,BaseAppView
 
 {
 
@@ -124,5 +127,28 @@ public abstract class SubTypeFragment extends BaseFragment
     }
 
 
+    @Override
+    protected void endEvent()
+    {
+        LogUtil.d("handler",TAG +"------presenter 进入销毁阶段");
+        if(mPresenter != null)
+        {
+            mPresenter.destroy();
+            LogUtil.d("handler",TAG +"------presenter 销毁成功");
+            mPresenter = null;
+        }
+    }
+
+    @Override
+    public void onError(String msg)
+    {
+        if(!CommonUtil.isEmpty(msg))
+            Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
+
+        if(isLoadMore)
+            mAdapter.showLoadFailedView();
+        else
+            mRefreshLayout.setRefreshing(false);
+    }
 
 }

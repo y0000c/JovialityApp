@@ -4,7 +4,6 @@ package demo.yc.joviality.ui.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,16 +85,6 @@ public class NewsListFragment extends SubTypeFragment implements FragListView<Ne
         mPresenter.loadListData(mSubId,mSubType,currentPager,dayCount);
     }
 
-    @Override
-    public void onError(String msg)
-    {
-        Toast.makeText(mContext,msg,Toast.LENGTH_SHORT).show();
-
-        if(isLoadMore)
-            mAdapter.showLoadFiledView();
-        else
-            mRefreshLayout.setRefreshing(false);
-    }
 
     @Override
     public void onSuccess(List<NewsEntity> newsList)

@@ -10,4 +10,6 @@ public interface FragListPresenter<T>{
     void loadListData(int item,String requestTag,int page);
 
     void loadListData(String id,String name,int page,int days);
+
+    void destroy();
 }

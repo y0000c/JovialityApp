@@ -29,6 +29,7 @@ public class HttpHelper
     public static void cancelAllRequest()
     {
         client.dispatcher().cancelAll();
+
     }
 
     public static void startDownLoad(String url, String path, String fileName, final Callback callback)

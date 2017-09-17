@@ -100,10 +100,12 @@ public abstract class BaseFragment extends Fragment
     public void onDestroy()
     {
         LogUtil.d("life",TAG+"_onDestroy");
+        endEvent();
         unBind.unbind();
         super.onDestroy();
     }
 
+    protected abstract void endEvent();
 
 
 

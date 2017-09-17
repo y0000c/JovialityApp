@@ -48,12 +48,20 @@ public class FragListModelImp<T>
             @Override
             public void onFailure(Call call, IOException e)
             {
-                callback.onError("请求失败");
+                if(call.isCanceled())
+                    callback.onError(null);
+                else
+                    callback.onError("请求失败");
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException
             {
+                if(call.isCanceled())
+                {
+                    callback.onError(null);
+                    return;
+                }
                 String json = response.body().string();
                 LogUtil.d("result", json);
                 if (response.isSuccessful())
@@ -92,12 +100,20 @@ public class FragListModelImp<T>
             @Override
             public void onFailure(Call call, IOException e)
             {
-                callback.onError("请求失败");
+                if(call.isCanceled())
+                    callback.onError(null);
+                else
+                    callback.onError("请求失败");
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException
             {
+                if(call.isCanceled())
+                {
+                    callback.onError(null);
+                    return;
+                }
                 String json = response.body().string();
                 LogUtil.d("result", json);
                 if (response.isSuccessful())

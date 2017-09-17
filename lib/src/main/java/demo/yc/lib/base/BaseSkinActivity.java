@@ -118,7 +118,7 @@ public abstract class BaseSkinActivity extends AppCompatActivity implements ISki
             SkinManager.getInstance().addSkinViews(this,skinViews);
         }
         skinViews.add(new SkinView(view,attrList));
-        LogUtil.w("plugin",this.getClass().getSimpleName()+"is add views");
+      //  LogUtil.w("plugin",this.getClass().getSimpleName()+"is add views");
 
         //判断当前是否需要马上换肤
         if(SkinManager.getInstance().isNeedLoadPlugin())
