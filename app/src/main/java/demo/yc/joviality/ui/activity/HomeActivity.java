@@ -24,6 +24,7 @@ import demo.yc.joviality.mvp.mvpview.HomeView;
 import demo.yc.joviality.ui.activity.base.BaseAppActivity;
 import demo.yc.joviality.ui.fragment.base.MainTypeFragment;
 import demo.yc.jovialityyc.R;
+import demo.yc.lib.http.HttpHelper;
 import demo.yc.lib.skin.SkinManager;
 import demo.yc.lib.utils.ActivityUtils;
 import demo.yc.lib.utils.LogUtil;
@@ -193,6 +194,7 @@ public class HomeActivity extends BaseAppActivity implements HomeView
      */
     private void doReplace(String lastTag,String targetTag)
     {
+        HttpHelper.cancelAllRequest();
         // 如果当前的frag未创建，则创建一个
         if(fragmentMap.get(targetTag) == null)
         {

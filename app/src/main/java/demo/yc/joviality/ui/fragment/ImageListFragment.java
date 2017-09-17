@@ -109,5 +109,6 @@ public class ImageListFragment extends SubTypeFragment implements FragListView<I
             mAdapter.setNewData(imageList);
             mRefreshLayout.setEnabled(false);
         }
+      //  mAdapter.notifyDataSetChanged();
     }
 }

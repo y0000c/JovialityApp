@@ -334,7 +334,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
         int size = mDatas.size();
         mDatas.addAll(data);
         if(size > 0)
-            notifyItemChanged(size);
+            notifyDataSetChanged();
     }
 
 
